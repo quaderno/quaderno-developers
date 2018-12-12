@@ -24,7 +24,7 @@ Try the demo below with this test card number: `4111 1111 1111 1111`
 
 ## Reference
 
-Wehn you include the Quaderno Checkout script in your page, a global `QuadernoCheckout` object will be available with the following methods:
+When you include the Quaderno Checkout script in your page, a global `QuadernoCheckout` object will be available with the following methods:
 
 <aside class="warning">
 Please keep in mind these methods are oriented to the <a href="#quaderno-checkout-integration-custom-integration">custom integration</a>. If you are using the <a href="#quaderno-checkout-integration-simple-integration">simple integration</a> we recommend not using them.

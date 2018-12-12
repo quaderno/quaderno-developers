@@ -13,7 +13,7 @@ Billing is the simplest way to give your customers access to all their receipts 
 
 ## Reference
 
-When you include the Quaderno Checkout script in your page, a global `QuadernoCheckout` object will be available with the following methods:
+When you include the Quaderno Billing script in your page, a global `QuadernoBilling` object will be available with the following methods:
 
 <aside class="warning">
 Please keep in mind these methods are oriented to the <a href="#quaderno-billing-integration-custom-integration">custom integration</a>. If you are using the <a href="#quaderno-billing-integration-simple-integration">simple integration</a> we recommend not using them.
@@ -33,11 +33,11 @@ Configures the basic checkout options that cannot be changed (unless `close()` i
 
 Option                   |Mandatory                                             | Description
 -------------------------|------------------------------------------------------|----------------------
-key                      |Yes                                                   |Your Quaderno publishable key.
-customer_id              |Yes                                                   |A  JWT with extra information about the transaction.
+key                      |Yes                                                   | Your Quaderno publishable key.
+customer_id              |Yes                                                   | The customer ID. You can also use their Stripe, Braintree, Paymill, or PayPal IDs if the customer was created via those gateways
 editable                 |No                                                    | Select wether or not your user can edit the invoices he opens
 
-### open([options = {}])
+### open()
 
 ```js
 QuadernoBilling.open();
@@ -55,8 +55,6 @@ Programmatically close the billing modal form and remove it from your DOM. After
 You can integrate Billing in as little as a single line of client-side code. As we release new features, we’ll automatically roll them out to your existing Billing integration, so that you will a be using our latest technology without needing to change a thing.
 
 ###Simple integration
-Just add this `<script>` tag in your HTML page to render the billing button. When users click the button we’ll show them their past receipts.
-
 ```html
 <script
   src="https://billing.quaderno.io/billing.js" class="quaderno-billing-button"
@@ -66,20 +64,21 @@ Just add this `<script>` tag in your HTML page to render the billing button. Whe
 </script>
 ```
 
+Just add this `<script>` tag in your HTML page to render the billing button. When users click the button we’ll show them their past receipts.
+
+
 Configuration options:
 
 Option             | Required | Description
 -------------------|----------|-------------------------------------------------------------------
 data-key           | Yes      | Your publishable key.
-data-customer-id   | Yes      | The customer ID. You can also use their Stripe, Braintree, Paymill, or PayPal IDs if the customer was created via those gateways. Optional
+data-customer-id   | Yes      | The customer ID. You can also use their Stripe, Braintree, Paymill, or PayPal IDs if the customer was created via those gateways.
 data-label         | No       | The text to be shown on the default green button.
 data-editable      | No       |Allow your users to edit their billing data. The default is  true.
 
 ###Custom integration
-The custom integration lets you create a custom button and bind it to Quaderno Billing. This permits any HTML element or JavaScript event to start launch the modal.
-When your page loads, you should create a handler object using `QuadernoBilling.configure()`. You can call `open()` on the handler in response to any event.
-If you need to reload the modal-for example, when navigation occurs in a single-page application—you can call  close() on the handler.
-The  key and customer_id parameter must be passed to `configure()`. Any other options can be passed to either `configure()` or `open()`.
+
+```html
 <button id="billing">Check your invoices</button>
 
 <script>
@@ -94,4 +93,8 @@ The  key and customer_id parameter must be passed to `configure()`. Any other op
     QuadernoBilling.open();
   });
 </script>
-The parameters supported by the  open() method are the following: 
+```
+The custom integration lets you create a custom button and bind it to Quaderno Billing. This permits any HTML element or JavaScript event to start launch the modal.
+When your page loads, you should create a handler object using `QuadernoBilling.configure()`. You can call `open()` on the handler in response to any event.
+If you need to reload the modal-for example, when navigation occurs in a single-page application—you can call  close() on the handler.
+The  key and customer_id parameter must be passed to `configure()`. Any other options can be passed to either `configure()` or `open()`.

@@ -493,10 +493,10 @@ If you are showing real time taxes calculations it's usually a good idea to forc
 
 All the methods described in this page needs at least two mandatory attributes:
 
-- Your Quaderno [publishable key](https://quadernoapp.com/settings/api)
-- The [ID of the product](https://quadernoapp.com/items) you want to sell
+- Your Quaderno [publishable key](https://quadernoapp.com/settings/api).
+- The [ID of the product](https://quadernoapp.com/items) you want to sell.
 
-Wether your transaction is a recurring charge or a one-off charge is determined by the way you've registered the product in Quaderno. Choose "subscription" if you want a recurring charge or "one-off" if you want a one-off charge.
+Whether your transaction is a recurring charge or a one-off charge is determined by the way you've registered the product in Quaderno. Choose "subscription" if you want a recurring charge or "one-off" if you want a one-off charge.
 
 ### With simple automatic init or deferred automatic init
 
