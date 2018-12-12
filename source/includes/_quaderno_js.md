@@ -13,7 +13,6 @@ However you’re using Quaderno.js, you always begin by including the library an
   <script src="https://js.quaderno.io/v3/"></script>
 ```
 
-
 ### Supported browsers
 
 Quaderno.js strives to support all recent versions of major browsers. For the sake of security and providing the best experience to the majority of customers, we do not support browsers that are no longer receiving security updates and represent a small minority of traffic.
@@ -27,7 +26,6 @@ If you have an issue with Quaderno.js on a specific browser, please **[contact 
 
 
 ## Reference
-
 
 ```js
 Quaderno.publishableKey = "pk_test00112233445566";

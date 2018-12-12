@@ -4,23 +4,26 @@ Quaderno is a set of APIs to automate and improve tax management in businesses o
 
 The documentation is organized into three major areas:
 
-Quaderno Checkout is a checkout form that you can use on your site to sell products and subscriptions.
-Quaderno.js is our javascript library that allows you to calculate sales taxes in your own checkout form.
-Quaderno Billing is a small plugin that you can use on your site to let your customers access their invoices and receipts.
-Quaderno API is our billing and tax API that you can use to calculate taxes and manage tax receipts from your backend.
+- **Quaderno.js** is a javascript library that allows you to calculate sales taxes in your own checkout form.
+- **Quaderno Checkout** is a checkout form that you can use on your site to sell products and subscriptions.
+- **Quaderno Billing** is a small plugin that you can use on your site to let your customers access their receipts and edit their billing data.
+- **Quaderno API** is our billing and tax API that you can use to calculate taxes and manage receipts from your backend.
 
 **Not a developer?**
-<br>
+
 A custom Quaderno integration requires you to either be or hire a developer. But you can use Quaderno through any number of [third-parties plugins and libraries](https://quaderno.io/integrations/) built by our community, such as for Shopify, Amazon FBA, and WooCommerce.
 
+**Need more help?**
+
+Just [send us an email](mailto:support@quaderno.io). We’re always happy to help out with code or any other questions you might have. 
 
 ## The Sandbox
 
-The Quaderno Sandbox mirrors the features found on the Quaderno Production servers and let you to test our API and/or connect your trial accounts from other services (Stripe, Braintree, etc.).
+The Quaderno Sandbox mirrors the features found on the Quaderno Production servers and let you to test our API and/or connect your trial accounts from other services like Stripe, PayPal, Braintree, etc.
 
 The Sandbox has parity with the Quaderno main feature set supported by the live environment. This means you can test your Quaderno processes and know they will behave the same on the production servers as they do in the Sandbox environment.
 
-**Your credentials for the Production environment does not work on the Sandbox.** You need to  [create a new account](https://sandbox-quadernoapp.com/signup).
+**Your credentials for the Production environment does not work on the Sandbox.** You need to [create a new account](https://sandbox-quadernoapp.com/signup).
 
 By using your Sandbox account, you can test and debug your application without referencing any real Quaderno users or their live Quaderno accounts. The Sandbox lets you operate your application in a safe environment and provides you a way to fine tune your Quaderno routines before moving your product into production.
 
@@ -34,6 +37,3 @@ Please keep in mind that while you test all the API methods and plugins against 
 <li>VAT numbers are not validated.</li>
 </ul>
 </aside>
-
-##Need more help?
-Just [send us an email]((mailto:support@quaderno.io)). We’re always happy to help out with code or any other questions you might have. 
