@@ -56,7 +56,8 @@ paypal                   |No                                                    
 color                    |No                                                    |The RGB color for the Checkout interface. The default is #4C7800.
 locale                   |No                                                    |Localize the Checkout interface (2-letter  ISO code). The default is auto`.
 callback                 |No (Recommendable)                                    |A function to handle the response details after the transaction for a card payment has been made.
-
+tosUrl                   | No (Yes if privacyUrl is present)                    |An url pointing to a page with your Terms of Service
+privacyUrl               | No (Yes if tosUrl is present)                        |An url pointing to a page with your privacy policy
 ### open([options = {}])
 
 ```js
@@ -150,7 +151,9 @@ data-charge                   |No                                               
 data-card-gateway             |No                                                    |String (only `stripe`). Specify if you want to activate the Stripe card inputs
 data-paypal                   |No                                                    |Boolean. Specify if you want to activate PayPal as payment method
 data-billing-address          |No                                                    |The checkout form ask for the customer’s full billing address and tax ID. The default is false.
-data-panel-label              |No                                                    |The label of the payment button in the Checkout (e.g. “Subscribe now”, “Pay {{amount}}”, etc.). If you include  {{amount}}, it will be replaced by the provided amount. Otherwise, the amount will be appended to the end of your label.
+data-panel-label              |No                                                    |The label of the payment button in the Checkout (e.g. “Subscribe now”, “Pay {{amount}}”, etc.). If you include  {{amount}}, it will be replaced by the provided amount. Otherwise, the amount will be appended to the end of your label. Only works for Stripe.
+data-tos-url                  | No (Yes if data-privacy-url is present)              |An url pointing to a page with your Terms of Service
+data-privacy-url              | No (Yes if data-tos-url is present)                  |An url pointing to a page with your privacy policy
 data-company                  |No                                                    |Boolean. Toggle the company name input. Default is false
 data-first-name               |No                                                    |Your customer’s first name, to pre-fill the checkout form.
 data-last-name                |No                                                    |Your customer’s last name, to pre-fill the checkout form.
