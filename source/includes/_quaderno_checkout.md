@@ -89,7 +89,7 @@ lastName                 |No                                                    
 companyName              |No                                                    |Your customer’s company name, to pre-fill the checkout form.
 email                    |No                                                    |Your customer’s email address, to pre-fill the checkout form.
 country                  |No                                                    |2-letter ISO code. Set it if you want to preload the customer's country.
-data-coupon              |No                                                    |Customers can enter a coupon code (only works for Stripe subscriptions). The default is false.
+coupon                   |No                                                    |Customers can enter a coupon code (only works for Stripe subscriptions). The default is false.
 
 ### close()
 
