@@ -12,6 +12,11 @@ However you’re using Quaderno.js, you always begin by including the library an
 ```html
   <script src="https://js.quaderno.io/v3/"></script>
 ```
+If you are using `Stripe` as your gateway you should also include Stripe-js library.
+<div class="center-column"></div>
+```html
+  <script src="https://js.stripe.com/v3/"></script>
+```
 
 ### Supported browsers
 

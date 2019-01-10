@@ -79,6 +79,10 @@ data-editable      | No       |Allow your users to edit their billing data. The 
 ###Custom integration
 
 ```html
+<head>
+  <script src="https://billing.quaderno.io/billing.js"></script>
+</head>
+
 <button id="billing">Check your invoices</button>
 
 <script>
