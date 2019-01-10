@@ -67,7 +67,7 @@ Attribute          | Description
   Quaderno.init(publishableKey, productId, {
     gateway: "stripe",
     firstName: "Marcial",
-    "LastName": "Ruiz Escribano"
+    lastName: "Ruiz Escribano"
   }).then(function(response){
     console.log(response.gateway, response.product);
   }).catch(function(error){
@@ -130,7 +130,7 @@ If there's any issue, this method returns a `Promise` which rejects with an `err
 ### calculateTaxes()
 
 ```js
-  Quaderno.taxesCalculate().then(function(taxObject){
+  Quaderno.calculateTaxes().then(function(taxObject){
     console.log(taxObject.name, taxObject.rate, taxObject.country); // ie. "VAT", 20, "GB"
   })
 ```
@@ -176,7 +176,7 @@ This method returns a `Promise` which resolves with an object with information r
 
 ```js
   Quaderno.redirectToPayPal().catch(function(error){
-    // Show the error message if the transaction couldn't be created
+    // Show the error message if the redirection cannot be done
     alert(error.description);
   })
 ```
@@ -392,12 +392,12 @@ Futhermore, you can also dissociate Quaderno from the DOM by setting the Quadern
     </label>
 
     <script>
-      Quaderno.init(publishableKey, productId
+      Quaderno.init(publishableKey, productId,
         {
           gateway: 'stripe',
           country: $('#country').val(),
           postalCode: $('#postal-code').val(),
-        },
+        }
       ).then(function(response) {
         console.log(response.gateway, response.product);
       }).catch(function(error) {
@@ -459,7 +459,7 @@ Usually you want to `reload` the checkout when one of those values has changed:
 
   <script>
     function reloadTaxes(){
-      Quaderno.taxesCalculate().then(function(taxObject){
+      Quaderno.calculateTaxes().then(function(taxObject){
         document.querySelector('tax-rate').innerHTML = taxObject.name + " " + taxObject.rate + "%"; // ie.: VAT 20%
       })
     }
@@ -636,13 +636,13 @@ In this case the relevant function is `Quaderno.redirectToPayPal`, in case of su
     var publishableKey = 'pk_test_0123456789';
     var productId = 'prod_0123456789';
 
-    Quaderno.init(publishableKey, productId
+    Quaderno.init(publishableKey, productId,
       {
         gateway: 'stripe',
         firstName: $('h1').html(),
         streetLine1: 'USS Enterprise',
         country: $('#country').val(),
-      },
+      }
     ).then(function(response) {
       console.log(response.gateway, response.product);
     }).catch(function(error) {
@@ -672,7 +672,7 @@ After you have the Quaderno object correctly configured, all you need is to toke
   </label>
 
   <!-- Card container for Stripe elements. You can get more information here: https://stripe.com/docs/stripe-js-->
-  <div id="card-container"></div>
+  <div id="card-element"></div>
 
   <button id="pay-button">Pay now!</button>
 
@@ -683,14 +683,14 @@ After you have the Quaderno object correctly configured, all you need is to toke
     var stripe = null;
 
     // Initialize the Quaderno object
-    Quaderno.init(publishableKey, productId
+    Quaderno.init(publishableKey, productId,
       {
         gateway: 'stripe',
         firstName: $('h1').html(),
         streetLine1: 'USS Enterprise',
         country: $('#country').html(),
         postalCode: $('#postal-code').val(),
-      },
+      }
     ).then(function(response) {
       // After a successful initialization we can mount Stripe elements
       stripe = Stripe(Quaderno.gatewayKeys.stripe);
@@ -743,7 +743,7 @@ If you are using PayPal as  the configured gateway, rather than using `Quaderno.
   </label>
 
   <!-- Card container for Stripe elements. You can get more information here: https://stripe.com/docs/stripe-js-->
-  <div id="card-container"></div>
+  <div id="card-element"></div>
 
   <button id="pay-button">Pay now!</button>
 
@@ -753,14 +753,14 @@ If you are using PayPal as  the configured gateway, rather than using `Quaderno.
     var productId = 'prod_0123456789';
 
     // Initialize the Quaderno object
-    Quaderno.init(publishableKey, productId
+    Quaderno.init(publishableKey, productId,
       {
-        gateway: 'stripe',
+        gateway: 'paypal',
         firstName: $('h1').html(),
         streetLine1: 'USS Enterprise',
         country: $('#country').html(),
         postalCode: $('#postal-code').val(),
-      },
+      }
     ).then(function(response) {
       // Redirect to PayPal when the customer clicks the button
       $('#pay-button').on('click', function(){
