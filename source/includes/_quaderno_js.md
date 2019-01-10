@@ -39,6 +39,7 @@ Quaderno.city = "Madrid";
 Quaderno.postalCode = "28016";
 Quaderno.region = "Madrid";
 Quaderno.country = "ES";
+Quaderno.redirectUrl = "https://your-webpage.com/thank-you";
 ```
 
 When you include the Quaderno.js script in your page, a global `Quaderno` object will be available with the following attributes:
@@ -60,6 +61,7 @@ Attribute          | Description
 `country`          | ISO 3166-1 alpha-2
 `businessNumber`   | A valid business number. Supported values are: EU VAT numbers, ABN, and NZBN.
 `coupon`           | A valid Stripe subscription percent off discount coupon mapped in your [Quaderno account](https://quadernoapp.com/coupons).
+`redirectUrl`      | URL to which redirect your customers after finishing the checkout process in PayPal. Mandatory if `gateway` value is set to `paypal`.
 
 ### init( publishableKey, productId [, options] )
 
@@ -93,6 +95,7 @@ Attribute          | Description
 `region`           |
 `country`          | ISO 3166-1 alpha-2
 `businessNumber`   | A valid business number. Supported values are: EU VAT numbers, ABN, and NZBN.
+`redirectUrl`      | URL to which redirect your customers after finishing the checkout process in PayPal. Mandatory if `gateway` value is set to `paypal`.
 
 This method returns a `Promise` which resolves with a `result` object. This object has either:
 
@@ -182,6 +185,8 @@ This method returns a `Promise` which resolves with an object with information r
 ```
 
 ***Async request.*** Automatically redirect your customer to the PayPal checkout page.
+
+Remember to specify a value for `redirectURL` field in order to be able to use this method.
 
 ### destroy()
 ```js
@@ -623,6 +628,8 @@ If you use PayPal then it's much simpler as it doesn't require any card tokeniza
 
 In this case the relevant function is `Quaderno.redirectToPayPal`, in case of success it automatically redirects the customer to the PayPal payment page, otherwise we will catch the error in the reject block and show it to the customer.
 
+Remember that you should have set a value for `redirectURL` in order to use `Quaderno.redirectToPayPal`. If you are using the automatic initialization method you can use the id `data-redirect-url` in the input containing the URL so it is automatically detected.
+
 ### With custom init
 ```html
   <h1>James Tiberius Kirk</h1>
@@ -760,20 +767,22 @@ If you are using PayPal as  the configured gateway, rather than using `Quaderno.
         streetLine1: 'USS Enterprise',
         country: $('#country').html(),
         postalCode: $('#postal-code').val(),
+        redirectUrl: 'https://your-webpage.com/thank-you'
       }
     ).then(function(response) {
       // Redirect to PayPal when the customer clicks the button
       $('#pay-button').on('click', function(){
         // Disable the button in order to prevent multiple clicks
-      var button = $(this).attr('disabled', 'disabled');
-      // Just an example of updating the postal code
-      Quaderno.postalCode = $('#postal-code').val();
+        var button = $(this).attr('disabled', 'disabled');
+        // Just an example of updating the postal code
+        Quaderno.postalCode = $('#postal-code').val();
 
-      // Redirect your customer to PayPal
-      Quaderno.redirectToPayPal().catch(function(error){
-        // Handle possible errors
-        alert(error.description);
-        button.disabled = false;
+        // Redirect your customer to PayPal
+        Quaderno.redirectToPayPal().catch(function(error){
+          // Handle possible errors
+          alert(error.description);
+          button.disabled = false;
+        });
       });
     }).catch(function(error) {
       console.log(error.description, error.messages);
