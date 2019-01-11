@@ -318,7 +318,7 @@ Attribute          | Description
 
 ### Simple automatic init
 
-Automatically loads quaderno.js if the form has the `quaderno-payment-form` ID and a valid `data-key` and `data-product`.
+Automatically loads quaderno.js if the form has the `quaderno-payment-form` ID and a valid `data-key` and `data-product-id`.
 
 - ***data-key***: Your Quaderno public key
 - ***data-product***: The product code you've registered in Quaderno
@@ -344,7 +344,7 @@ The input fields will be automatically detected as long as they have the `data-q
     </head>
 
     <body>
-      <form id="quaderno-payment-form" data-publishable-key="pk_xxxxxxxx" data-product="prod_xxxxxxxx">
+      <form id="quaderno-payment-form" data-publishable-key="pk_xxxxxxxx" data-product-id="prod_xxxxxxxx">
         <input data-quaderno="firstName" />
         <input data-quaderno="lastName" />
         <select data-quaderno="country"> <!--options … --> </select>
@@ -366,7 +366,7 @@ If you don't want the form to load automatically, you can load it later by not u
     </head>
 
     <body>
-      <form id="payment-form" data-key="pk_xxxxxxxx" data-product="prod_xxxxxxxx">
+      <form id="payment-form" data-key="pk_xxxxxxxx" data-product-id="prod_xxxxxxxx">
         <input data-quaderno="firstName" />
         <input data-quaderno="lastName" />
         <!-- … -->
@@ -633,7 +633,7 @@ If you use PayPal then it's much simpler as it doesn't require any card tokeniza
 
 In this case the relevant function is `Quaderno.redirectToPayPal`, in case of success it automatically redirects the customer to the PayPal payment page, otherwise we will catch the error in the reject block and show it to the customer.
 
-Remember that you should have set a value for `redirectURL` in order to use `Quaderno.redirectToPayPal`. If you are using the automatic initialization method you can use the id `data-redirect-url` in the input containing the URL so it is automatically detected.
+Remember that in order to use Paypal, you should have set the value of the payment form attribute `data-gateway` to `paypal`. In addition to that, you should have set a value for `redirectURL` so you can use `Quaderno.redirectToPayPal`. If you are using the automatic initialization method, you should use the `data-redirect-url` attribute in the form tag so it is automatically detected.
 
 ### With custom init
 ```html
