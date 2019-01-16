@@ -175,12 +175,12 @@ If you need to abort the Checkout process—for example, when navigation occurs 
 
 The `publishableKey`, `cardGateway`, `paypal`, `locale`, `color` and `callback` parameter must be passed to `configure()`. Any other options should be passed to `open()`.
 
+<div class="center-column"></div>
+```html
 <head>
   <script src="https://checkout.quaderno.io/v3/checkout.js"></script>
 </head>
 
-<div class="center-column"></div>
-```html
 <button id="customButton">Pay with card</button>
 
 <script>
