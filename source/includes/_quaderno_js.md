@@ -318,10 +318,10 @@ Attribute          | Description
 
 ### Simple automatic init
 
-Automatically loads quaderno.js if the form has the `quaderno-payment-form` ID and a valid `data-key` and `data-product-id`.
+Automatically loads quaderno.js if the form has the `quaderno-payment-form` ID and a valid `data-publishable-key` and `data-product-id`.
 
-- ***data-key***: Your Quaderno public key
-- ***data-product***: The product code you've registered in Quaderno
+- ***data-publishable-key***: Your Quaderno public key
+- ***data-product-id***: The product code you've registered in Quaderno
 
 The input fields will be automatically detected as long as they have the `data-quaderno` with their definition:
 
@@ -366,7 +366,7 @@ If you don't want the form to load automatically, you can load it later by not u
     </head>
 
     <body>
-      <form id="payment-form" data-key="pk_xxxxxxxx" data-product-id="prod_xxxxxxxx">
+      <form id="payment-form" data-publishable-key="pk_xxxxxxxx" data-product-id="prod_xxxxxxxx">
         <input data-quaderno="firstName" />
         <input data-quaderno="lastName" />
         <!-- … -->
