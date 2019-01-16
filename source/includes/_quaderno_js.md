@@ -12,6 +12,11 @@ However you’re using Quaderno.js, you always begin by including the library an
 ```html
   <script src="https://js.quaderno.io/v3/"></script>
 ```
+If you are using `Stripe` as your gateway you should also include Stripe-js library.
+<div class="center-column"></div>
+```html
+  <script src="https://js.stripe.com/v3/"></script>
+```
 
 ### Supported browsers
 
@@ -39,6 +44,7 @@ Quaderno.city = "Madrid";
 Quaderno.postalCode = "28016";
 Quaderno.region = "Madrid";
 Quaderno.country = "ES";
+Quaderno.redirectUrl = "https://your-webpage.com/thank-you";
 ```
 
 When you include the Quaderno.js script in your page, a global `Quaderno` object will be available with the following attributes:
@@ -60,6 +66,7 @@ Attribute          | Description
 `country`          | ISO 3166-1 alpha-2
 `businessNumber`   | A valid business number. Supported values are: EU VAT numbers, ABN, and NZBN.
 `coupon`           | A valid Stripe subscription percent off discount coupon mapped in your [Quaderno account](https://quadernoapp.com/coupons).
+`redirectUrl`      | URL to which redirect your customers after finishing the checkout process in PayPal. Mandatory if `gateway` value is set to `paypal`.
 
 ### init( publishableKey, productId [, options] )
 
@@ -67,7 +74,7 @@ Attribute          | Description
   Quaderno.init(publishableKey, productId, {
     gateway: "stripe",
     firstName: "Marcial",
-    "LastName": "Ruiz Escribano"
+    lastName: "Ruiz Escribano"
   }).then(function(response){
     console.log(response.gateway, response.product);
   }).catch(function(error){
@@ -93,6 +100,7 @@ Attribute          | Description
 `region`           |
 `country`          | ISO 3166-1 alpha-2
 `businessNumber`   | A valid business number. Supported values are: EU VAT numbers, ABN, and NZBN.
+`redirectUrl`      | URL to which redirect your customers after finishing the checkout process in PayPal. Mandatory if `gateway` value is set to `paypal`.
 
 This method returns a `Promise` which resolves with a `result` object. This object has either:
 
@@ -130,7 +138,7 @@ If there's any issue, this method returns a `Promise` which rejects with an `err
 ### calculateTaxes()
 
 ```js
-  Quaderno.taxesCalculate().then(function(taxObject){
+  Quaderno.calculateTaxes().then(function(taxObject){
     console.log(taxObject.name, taxObject.rate, taxObject.country); // ie. "VAT", 20, "GB"
   })
 ```
@@ -176,12 +184,14 @@ This method returns a `Promise` which resolves with an object with information r
 
 ```js
   Quaderno.redirectToPayPal().catch(function(error){
-    // Show the error message if the transaction couldn't be created
+    // Show the error message if the redirection cannot be done
     alert(error.description);
   })
 ```
 
 ***Async request.*** Automatically redirect your customer to the PayPal checkout page.
+
+Remember to specify a value for `redirectURL` field in order to be able to use this method.
 
 ### destroy()
 ```js
@@ -308,10 +318,10 @@ Attribute          | Description
 
 ### Simple automatic init
 
-Automatically loads quaderno.js if the form has the `quaderno-payment-form` ID and a valid `data-key` and `data-product`.
+Automatically loads quaderno.js if the form has the `quaderno-payment-form` ID and a valid `data-publishable-key` and `data-product-id`.
 
-- ***data-key***: Your Quaderno public key
-- ***data-product***: The product code you've registered in Quaderno
+- ***data-publishable-key***: Your Quaderno public key
+- ***data-product-id***: The product code you've registered in Quaderno
 
 The input fields will be automatically detected as long as they have the `data-quaderno` with their definition:
 
@@ -334,7 +344,7 @@ The input fields will be automatically detected as long as they have the `data-q
     </head>
 
     <body>
-      <form id="quaderno-payment-form" data-publishable-key="pk_xxxxxxxx" data-product="prod_xxxxxxxx">
+      <form id="quaderno-payment-form" data-publishable-key="pk_xxxxxxxx" data-product-id="prod_xxxxxxxx">
         <input data-quaderno="firstName" />
         <input data-quaderno="lastName" />
         <select data-quaderno="country"> <!--options … --> </select>
@@ -356,7 +366,7 @@ If you don't want the form to load automatically, you can load it later by not u
     </head>
 
     <body>
-      <form id="payment-form" data-key="pk_xxxxxxxx" data-product="prod_xxxxxxxx">
+      <form id="payment-form" data-publishable-key="pk_xxxxxxxx" data-product-id="prod_xxxxxxxx">
         <input data-quaderno="firstName" />
         <input data-quaderno="lastName" />
         <!-- … -->
@@ -392,12 +402,12 @@ Futhermore, you can also dissociate Quaderno from the DOM by setting the Quadern
     </label>
 
     <script>
-      Quaderno.init(publishableKey, productId
+      Quaderno.init(publishableKey, productId,
         {
           gateway: 'stripe',
           country: $('#country').val(),
           postalCode: $('#postal-code').val(),
-        },
+        }
       ).then(function(response) {
         console.log(response.gateway, response.product);
       }).catch(function(error) {
@@ -459,7 +469,7 @@ Usually you want to `reload` the checkout when one of those values has changed:
 
   <script>
     function reloadTaxes(){
-      Quaderno.taxesCalculate().then(function(taxObject){
+      Quaderno.calculateTaxes().then(function(taxObject){
         document.querySelector('tax-rate').innerHTML = taxObject.name + " " + taxObject.rate + "%"; // ie.: VAT 20%
       })
     }
@@ -623,6 +633,8 @@ If you use PayPal then it's much simpler as it doesn't require any card tokeniza
 
 In this case the relevant function is `Quaderno.redirectToPayPal`, in case of success it automatically redirects the customer to the PayPal payment page, otherwise we will catch the error in the reject block and show it to the customer.
 
+Remember that in order to use Paypal, you should have set the value of the payment form attribute `data-gateway` to `paypal`. In addition to that, you should have set a value for `redirectURL` so you can use `Quaderno.redirectToPayPal`. If you are using the automatic initialization method, you should use the `data-redirect-url` attribute in the form tag so it is automatically detected.
+
 ### With custom init
 ```html
   <h1>James Tiberius Kirk</h1>
@@ -636,13 +648,13 @@ In this case the relevant function is `Quaderno.redirectToPayPal`, in case of su
     var publishableKey = 'pk_test_0123456789';
     var productId = 'prod_0123456789';
 
-    Quaderno.init(publishableKey, productId
+    Quaderno.init(publishableKey, productId,
       {
         gateway: 'stripe',
         firstName: $('h1').html(),
         streetLine1: 'USS Enterprise',
         country: $('#country').val(),
-      },
+      }
     ).then(function(response) {
       console.log(response.gateway, response.product);
     }).catch(function(error) {
@@ -672,7 +684,7 @@ After you have the Quaderno object correctly configured, all you need is to toke
   </label>
 
   <!-- Card container for Stripe elements. You can get more information here: https://stripe.com/docs/stripe-js-->
-  <div id="card-container"></div>
+  <div id="card-element"></div>
 
   <button id="pay-button">Pay now!</button>
 
@@ -683,14 +695,14 @@ After you have the Quaderno object correctly configured, all you need is to toke
     var stripe = null;
 
     // Initialize the Quaderno object
-    Quaderno.init(publishableKey, productId
+    Quaderno.init(publishableKey, productId,
       {
         gateway: 'stripe',
         firstName: $('h1').html(),
         streetLine1: 'USS Enterprise',
         country: $('#country').html(),
         postalCode: $('#postal-code').val(),
-      },
+      }
     ).then(function(response) {
       // After a successful initialization we can mount Stripe elements
       stripe = Stripe(Quaderno.gatewayKeys.stripe);
@@ -743,7 +755,7 @@ If you are using PayPal as  the configured gateway, rather than using `Quaderno.
   </label>
 
   <!-- Card container for Stripe elements. You can get more information here: https://stripe.com/docs/stripe-js-->
-  <div id="card-container"></div>
+  <div id="card-element"></div>
 
   <button id="pay-button">Pay now!</button>
 
@@ -753,27 +765,29 @@ If you are using PayPal as  the configured gateway, rather than using `Quaderno.
     var productId = 'prod_0123456789';
 
     // Initialize the Quaderno object
-    Quaderno.init(publishableKey, productId
+    Quaderno.init(publishableKey, productId,
       {
-        gateway: 'stripe',
+        gateway: 'paypal',
         firstName: $('h1').html(),
         streetLine1: 'USS Enterprise',
         country: $('#country').html(),
         postalCode: $('#postal-code').val(),
-      },
+        redirectUrl: 'https://your-webpage.com/thank-you'
+      }
     ).then(function(response) {
       // Redirect to PayPal when the customer clicks the button
       $('#pay-button').on('click', function(){
         // Disable the button in order to prevent multiple clicks
-      var button = $(this).attr('disabled', 'disabled');
-      // Just an example of updating the postal code
-      Quaderno.postalCode = $('#postal-code').val();
+        var button = $(this).attr('disabled', 'disabled');
+        // Just an example of updating the postal code
+        Quaderno.postalCode = $('#postal-code').val();
 
-      // Redirect your customer to PayPal
-      Quaderno.redirectToPayPal().catch(function(error){
-        // Handle possible errors
-        alert(error.description);
-        button.disabled = false;
+        // Redirect your customer to PayPal
+        Quaderno.redirectToPayPal().catch(function(error){
+          // Handle possible errors
+          alert(error.description);
+          button.disabled = false;
+        });
       });
     }).catch(function(error) {
       console.log(error.description, error.messages);

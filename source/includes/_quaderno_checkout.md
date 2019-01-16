@@ -177,6 +177,10 @@ The `publishableKey`, `cardGateway`, `paypal`, `locale`, `color` and `callback` 
 
 <div class="center-column"></div>
 ```html
+<head>
+  <script src="https://checkout.quaderno.io/v3/checkout.js"></script>
+</head>
+
 <button id="customButton">Pay with card</button>
 
 <script>
