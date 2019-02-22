@@ -1,4 +1,4 @@
-#Quaderno Billing
+# Billing
 
 Billing is the simplest way to give your customers access to all their receipts & billing history. They can easily download past receipts and update their billing data by themselves. Improve your billing support with a single line of code.
 

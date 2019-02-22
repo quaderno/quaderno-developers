@@ -13,8 +13,9 @@ toc_footers:
 includes:
   - intro
   - quaderno_js
-  - quaderno_checkout
-  - quaderno_billing
+  - checkout
+  - billing
+  - apps
 
 search: true
 ---

@@ -1,4 +1,4 @@
-# Quaderno Checkout
+# Checkout
 
 ## Introduction
 
