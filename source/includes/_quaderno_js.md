@@ -12,12 +12,6 @@ However you’re using Quaderno.js, you always begin by including the library an
 ```html
   <script src="https://js.quaderno.io/v3/"></script>
 ```
-If you are using `Stripe` as your gateway you should also include Stripe-js library.
-
-<div class="center-column"></div>
-```html
-  <script src="https://js.stripe.com/v3/"></script>
-```
 
 ### Supported browsers
 
@@ -224,9 +218,9 @@ Remove event listeners from the DOM elements. It might be useful if you have sin
 
 ***Async request***. Retrieve the product info identified by `productId`. Returns a `product` object in the resolve function.
 
-### getTaxes()
+### readTaxes()
 ```js
-  taxes = Quaderno.getTaxes();
+  taxes = Quaderno.readTaxes();
 
   taxes.name;
   taxes.rate;
@@ -264,6 +258,8 @@ This method returns a `Promise` with the same behavior as `Quaderno.init`
 ```
 
 ***Async request***. This method validates the customer's business number. Currently Quaderno validates EU VAT numbers, ABN, and NZBN.
+
+Please keep in mind that business numbers are not actually validated while using the Sandbox.
 
 This method returns a `result` object with the following attribute:
 
