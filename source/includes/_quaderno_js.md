@@ -263,7 +263,7 @@ Please keep in mind that business numbers are not actually validated while using
 
 This method returns a `result` object with the following attribute:
 
-- **result.valid**: true, false or null.
+- **result.valid**: true (valid business number), false (invalid business number) or null (the external validation service is temporarily unavailable).
 
 ### The Tax object
 
