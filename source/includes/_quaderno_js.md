@@ -54,7 +54,7 @@ Attribute          | Description
     postalCode: "91104",
     country: "US"
   }).then(function(response){
-    console.log(response.gateway, response.product);
+    console.log(response.product);
   }).catch(function(error){
     console.log(error.description, error.messages);
   });
@@ -72,9 +72,8 @@ Attribute          | Description
 `country`          | ISO 3166-1 alpha-2.
 `businessNumber`   | A valid business number. Supported values are: EU VAT numbers, ABN, and NZBN.
 
-This method returns a `Promise` which resolves with a `result` object. This object has either:
+This method returns a `Promise` which resolves with a `result` object. This object has the following reference:
 
-- **result.gateway**: a `gateway` object with general info about the chosen payment processor.
 - **result.product**: a `product` object.
 
 If there's any issue, this method returns a `Promise` which rejects with an `error` object. This object has either:
@@ -87,7 +86,7 @@ If there's any issue, this method returns a `Promise` which rejects with an `err
 
 ```js
   Quaderno.initForm("#formId").then(function(response){
-    console.log(response.gateway, response.product);
+    console.log(response.product);
   }).catch(function(error){
     console.log(error.description, error.messages);
   });
@@ -95,9 +94,8 @@ If there's any issue, this method returns a `Promise` which rejects with an `err
 
 ***Async request***. This method also initializes the global object `Quaderno` from a form object.
 
-This method returns a `Promise` which resolves with a `result` object. This object has either:
+This method returns a `Promise` which resolves with a `result` object. This object has the following reference:
 
-- **result.gateway**: a `gateway` object with general info about the chosen payment processor.
 - **result.product**: a `product` object.
 
 If there's any issue, this method returns a `Promise` which rejects with an `error` object. This object has either:
@@ -217,7 +215,7 @@ Attribute          | Description
 
 ### The Product object
 
-This object contains the relevant information related to the productID you've set. It's returned by the resolve function of `Quaderno.init`, `Quaderno.initForm` (in conjunction with the gateway object) or `Quaderno.getProduct`.
+This object contains the relevant information related to the productID you've set. It's returned by the resolve function of `Quaderno.init`, `Quaderno.initForm` or `Quaderno.getProduct`.
 
 Attribute          | Description
 -------------------|-----------------------------------------------------------------------------------------------------------
