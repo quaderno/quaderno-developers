@@ -13,7 +13,6 @@ toc_footers:
 includes:
   - intro
   - quaderno_js
-  - checkout
   - billing
   - apps
 
