@@ -1,235 +1,161 @@
-# Checkout
+# Checkout: Sessions
 
 ## Introduction
 
-Checkout is the best billing flow, on web and mobile. Checkout builds on top of Quaderno.js to provide your users with a streamlined, mobile-ready payment experience that is constantly improving.
+A Checkout Session represents your customer’s session as they pay for one-time purchases or subscriptions through Checkout. You can create simple sessions by using Checkout Links but if you want to fine tune the Checkout for a specific customer or create Sessions on-the-fly, you can also create a Checkout Session directly. You can find more information about how to manage the Sessions in the [API docs](https://developers.quaderno.io/api/#checkout-sessions)
 
-Try the demo below with this test card number: `4111 1111 1111 1111`
+## How to create a Checkout Session and fulfill the order
 
-<div style="width: 60%; margin: 0 auto;">
-  <form action="http://quadernoapp.com/login" method="POST">
-    <script src="https://checkout.quaderno.io/v3/checkout.js" class="quaderno-button"
-    data-company="false"
-    data-publishable-key="pk_test_LNpesCnUBN6Ax__xbmc4"
-    data-card-gateway="stripe"
-    data-paypal="true"
-    data-product-id='prod_61ffa845b4a0b8'
-    data-locale="en"
-    data-label="Demo"
-    data-billing-address="true"
-    data-panel-label="Pay {{amount}} now!"
-    ></script>
-  </form>
-</div>
+> In this example, we are going to learn how to create a Checkout Session for your customer and how to asynchrnonously identify the transaction once it has been completed by using the `checkout.succeeded` event.
 
-## Reference
+### Part 1: Creating the Session:
 
-When you include the Quaderno Checkout script in your page, a global `QuadernoCheckout` object will be available with the following methods:
+Create a Checkout Session for your customer (more details [here](https://developers.quaderno.io/api/#create-a-session))
+
+<div class="center-column"></div>
+```shell
+curl -u sk_test123123123123123:x \
+     -H 'Content-Type: application/json' \
+     -X POST \
+     -d '{"billing_details_collection":"auto","cancel_url":"string","coupon_collection":true,"customer":{"first_name":"John","last_name":"Doe","email":"john@doe.com"},"items":[{"product":"prod_61ffa845b4a0b8"}]}' \
+     'https://demo-account.quadernoapp.com/api/checkout/sessions.json'
+```
+
+This will return the newly created session:
+
+<div class="center-column"></div>
+```json
+{
+      "id":1,
+      "status":"completed",
+      "billing_details_collection":"required",
+      "cancel_url":"http://go.back.com",
+      "coupon_collection":true,
+      "locale":"auto",
+      "payment_methods":["card", "paypal"],
+      "success_url":"http://success.com?prod=1",
+      "custom":{},
+      "items":[
+         {
+            "product":"prod_61ffa845b4a0b8",
+            "amount":999.0,
+            "name":"A test item",
+            "description":"This a test item.",
+            "currency":"EUR",
+            "quantity":1
+         }
+      ],
+      "customer":{
+         "billing_city":null,
+         "billing_country":null,
+         "billing_postal_code":null,
+         "billing_street_line_1":null,
+         "billing_street_line_2":null,
+         "company":"",
+         "email":"john@doe.com",
+         "first_name":"John",
+         "last_name":"Doe",
+         "tax_id":null,
+         "business_number":null
+      },
+      "permalink":"https://demo-account.quadernoapp.com/checkout/session/8ccf3fdc42b85800188b113b81d3e4212ef094b3"
+   }
+```
+
+The the `permalink` (https://demo-account.quadernoapp.com/checkout/session/8ccf3fdc42b85800188b113b81d3e4212ef094b3) is the URL which your customer will use to complete their purchase. 
+
+
 
 <aside class="warning">
-Please keep in mind these methods are oriented to the <a href="#quaderno-checkout-integration-custom-integration">custom integration</a>. If you are using the <a href="#quaderno-checkout-integration-simple-integration">simple integration</a> we recommend not using them.
+Please keep in mind this permalink is unique for a specific customer and it can only be used once. If you need to charge another customer, create another session.
+</aside>
+<aside class="notice">
+As a general recommendation, do not dynamically generate a new session for your customer for a same purchase everytime he loads your page. First check if there's already an existing session generated for them and try to reuse if it's still pending or abandoned otherwise you might end with tons of abandoned sessions.
 </aside>
 
-### configure(options = {})
 
-```js
-QuadernoCheckout.configure({
-  publishableKey: 'pk_test_00112233445566778899',
-  paypal: true,
-  cardGateway: 'stripe',
-  locale: 'es',
-  callback: function(e){
-    // Transaction successfully created
-    console.log(e)
-  }
-});
-```
+### Part 2: Fulfilling the order
 
-Configures the basic checkout options that cannot be changed (unless `close()` is invoked). Accepts the following options:
-
-Option                   |Mandatory                                             | Description
--------------------------|------------------------------------------------------|-----------------------------
-publishableKey           |Yes                                                   |Your Quaderno publishable key.
-charge                   |No                                                    |A  JWT with extra information about the transaction.
-cardGateway              |No                                                    |String (only `stripe`). Specify if you want to activate the Stripe card inputs
-paypal                   |No                                                    |Boolean. Specify if you want to activate PayPal as payment method
-color                    |No                                                    |The RGB color for the Checkout interface. The default is #4C7800.
-locale                   |No                                                    |Localize the Checkout interface (2-letter  ISO code). The default is auto`.
-callback                 |No (Recommendable)                                    |A function to handle the response details after the transaction for a card payment has been made.
-tosUrl                   | No (Yes if privacyUrl is present)                    |An url pointing to a page with your Terms of Service
-privacyUrl               | No (Yes if tosUrl is present)                        |An url pointing to a page with your privacy policy
-### open([options = {}])
-
-```js
-QuadernoCheckout.open({
-  redirectUrl: 'https://your-webpage.com/thank-you',
-  discount: true,
-  firstName: 'Steve',
-  lastName: 'Rogers',
-  email: 'the@nomad.com',
-  country: 'US',
-  postalCode: '11201',
-  productId: '123456',
-  billingAddress: true
-});
-```
-Programmatically opens the checkout with the options passed. The parameters supported by the `open()` method are the following:
+Due to the SCA (Strong Customer Authentication), the only way to guarantee the transaction has succeeded is by checking it asynchrnously via webhooks. Once your customer visits the permalink you've set up for them and completes the purchase, you need to set up some webhooks to track succeeded checkout sessions. In this case we are subscribing to the `checkout.succeeded` event to get a notification each time a customer completes a purchase on the Checkout.
 
 
-Option                   |Mandatory                                             | Description
--------------------------|------------------------------------------------------|--------------------------------------
-redirectUrl              |Yes (only if `paypal` has been set to `true`)         |URL to which redirect your customers after finishing the checkout process in PayPal.
-productId                |Yes                                                   |The ID of the product you want to sell.
-charge                   |No                                                    |A  JWT with extra information about the transaction.
-billingAddress           |No                                                    |The checkout form ask for the customer’s full billing address and tax ID. The default is false.
-panelLabel               |No                                                    |The label of the payment button in the Checkout (e.g. “Subscribe now”, “Pay {{amount}}”, etc.). If you include  {{amount}}, it will be replaced by the provided amount. Otherwise, the amount will be appended to the end of your label.
-company                  |No                                                    |Boolean. Toggle the company name input. Default is false
-firstName                |No                                                    |Your customer’s first name, to pre-fill the checkout form.
-lastName                 |No                                                    |Your customer’s last name, to pre-fill the checkout form.
-companyName              |No                                                    |Your customer’s company name, to pre-fill the checkout form.
-email                    |No                                                    |Your customer’s email address, to pre-fill the checkout form.
-country                  |No                                                    |2-letter ISO code. Set it if you want to preload the customer's country.
-discount                 |No                                                    |Customers can enter a coupon code (only works for Stripe subscriptions). The default is `false`.
-
-### close()
-
-```js
-QuadernoCheckout.close();
-```
-Programmatically close the checkout form and remove it from your DOM. After this, you can call `configure` again if you want to set up basic configuration options again or `open()` to reopen the checkout form.
-
-
-##Integration
-
-Depending on your needs, you can either integrate Checkout as just a copy and paste snippet with almost zero coding with the simple integration or you can get more flexibility by using the custom integration.
-
-###Simple integration
-```html
-<form action="/response-handler" method="POST">
-  <script src="https://checkout.quaderno.io/v3/checkout.js" class="quaderno-button"
-  data-company="false"
-  data-publishable-key="pk_test_LNpesCnUBN6Ax__xbmc4"
-  data-card-gateway="stripe"
-  data-paypal="true"
-  data-product-id='prod_61ffa845b4a0b8'
-  data-locale="en"
-  data-label="A demo button"
-  data-billing-address="true"
-  data-panel-label="Pay {{amount}} now!"
-  ></script>
-</form>
-```
-
-You can integrate Checkout in as little as a single line of client-side code. As we release new features, we’ll automatically roll them out to your existing Checkout integration, so that you will always be using our latest technology without needing to change a thing. Just add this  `<script>` tag inside your checkout `<form>` to render the payment button. When a user clicks the button and completes the payment, we will create a charge or a subscription and submit your form with the transaction details along with any other `<input>` fields in your form.
-
-Once the transction is complete, a new `transactionDetails` input will be added to the form and it will be submitted to your form’s action endpoint, along with any other `<input>` in the form.
-
-The `transactionDetails` value is a JWT string encoded with your Quaderno private key that contains the transaction details. The  `transactionDetails` input contains the following data:
+You can subscribe to the webhooks by using the API (more details [here](https://developers.quaderno.io/api/#create-a-webhook)):
 
 <div class="center-column"></div>
-```js
+
+```shell
+# body
+'{
+    "url": "http://yourapp.com/notifications",
+    "events_types": ["checkout.succeed"]
+}'
+
+curl -u YOUR_API_KEY:x \
+     -H 'Content-Type: application/json' \
+     -X POST \
+     --data-binary @body.json \
+     'https://ACCOUNT_NAME.quadernoapp.com/api/webhooks.json'
+```
+
+or by using the web interface (in **Developers -> Webhooks -> Create Webhook**):
+
+![checkout.succeeded](https://i.imgur.com/iKV1NbY.png)
+
+
+Once you've subscribed to the `checkout.succeeded` event you have to create an endpoint in your app to handle the webhooks notifications. This is a what a `checkout.succeeded` notification should look like:
+
+<div class="center-column"></div>
+
+```json
 {
-  customer: 'CUSTOMER_ID',
-  transaction: 'TRANSACTION_ID',
-  type: 'subscription or charge',
-  gateway: 'stripe',
-  product_id: 'PRODUCT_CODE'
-  iat: UNIX timestamp
+   "event_type":"checkout.succeeded",
+   "data":{
+      "object":{
+         "message":{
+            "response_message":"Checkout succeeded",
+            "status_code":200
+         },
+         "transaction_details":{
+            "session":43,
+            "session_permalink":"https://demo.quadernoapp.com/checkout/session/8ccf3fdc42b85800188b113b81d3e4212ef094b3",
+            "gateway":"stripe",
+            "type":"charge",
+            "description":"Unicorn",
+            "customer":"cus_FXesSyaK3CG8Oz",
+            "email":"john@doe.com",
+            "transaction":"pi_1F2ZYtEjVHvINKlcq2as8H5V",
+            "product_id":"prod_61ffa845b4a0b8",
+            "tax_name":"VAT",
+            "tax_rate":20.0,
+            "extra_tax_name":null,
+            "extra_tax_rate":null,
+            "iat":1564647784,
+            "amount_cents":1500,
+            "amount":"15.00",
+            "currency":"EUR"
+         },
+         "contact":{
+            "id":547540,
+            "kind":"company",
+            "first_name":"John ",
+            "last_name":"Doe",
+            "full_name":"John  Doe",
+            "contact_name":null,
+            "street_line_1":"Fake Street 1",
+            "postal_code":"SW15 5PU",
+            "city":null,
+            "region":null,
+            "country":"GB",
+            "email":"john@doe.com",
+            "web":null,
+            "language":"EN",
+            "tax_id":null,
+            "vat_number":null
+         }
+      }
+   }
 }
+
 ```
 
-
-You can use this data to sync the transaction in your back-end.
-
-These are the accepted `data` attributes for configuring checkout in the simple integration:
-
-Option                        |Mandatory                                             | Description
-------------------------------|------------------------------------------------------|-----------------------------
-data-publishable-key          |Yes                                                   |Your Quaderno publishable key.
-data-product-id               |Yes                                                   |The ID of the product you want to sell.
-data-charge                   |No                                                    |A  JWT with extra information about the transaction.
-data-card-gateway             |No                                                    |String (only `stripe`). Specify if you want to activate the Stripe card inputs
-data-paypal                   |No                                                    |Boolean. Specify if you want to activate PayPal as payment method
-data-billing-address          |No                                                    |The checkout form ask for the customer’s full billing address and tax ID. The default is false.
-data-panel-label              |No                                                    |The label of the payment button in the Checkout (e.g. “Subscribe now”, “Pay {{amount}}”, etc.). If you include  {{amount}}, it will be replaced by the provided amount. Otherwise, the amount will be appended to the end of your label. Only works for Stripe.
-data-tos-url                  | No (Yes if data-privacy-url is present)              |An url pointing to a page with your Terms of Service
-data-privacy-url              | No (Yes if data-tos-url is present)                  |An url pointing to a page with your privacy policy
-data-company                  |No                                                    |Boolean. Toggle the company name input. Default is false
-data-first-name               |No                                                    |Your customer’s first name, to pre-fill the checkout form.
-data-last-name                |No                                                    |Your customer’s last name, to pre-fill the checkout form.
-data-company-name             |No                                                    |Your customer’s company name, to pre-fill the checkout form.
-data-email                    |No                                                    |Your customer’s email address, to pre-fill the checkout form.
-data-country                  |No                                                    |2-letter ISO code. Set it if you want to preload the customer's country.
-data-label                    |No                                                    |The text to be shown on the button the customer presses to show the checkout form.
-data-color                    |No                                                    |The RGB color for the Checkout interface. The default is #4C7800.
-data-locale                   |No                                                    |Localize the Checkout interface (2-letter  ISO code). The default is EN.
-data-coupon                   |No                                                    |Customers can enter a coupon code (only works for Stripe subscriptions). The default is false.
-
-###Custom Integration
-
-The custom integration lets you create a custom DOM element and bind it to the Quaderno Checkout. This permits any HTML element or JavaScript event to start a Checkout payment.
-
-When your page loads, you should create a handler object using  `QuadernoCheckout.configure()`. You can call `open()` on the handler in response to any event.
-
-If you need to abort the Checkout process—for example, when navigation occurs in a single-page application—you can call  `close()` on the QuadernoCheckout global object.
-
-The `publishableKey`, `cardGateway`, `paypal`, `locale`, `color` and `callback` parameter must be passed to `configure()`. Any other options should be passed to `open()`.
-
-<div class="center-column"></div>
-```html
-<head>
-  <script src="https://checkout.quaderno.io/v3/checkout.js"></script>
-</head>
-
-<button id="customButton">Pay with card</button>
-
-<script>
-  QuadernoCheckout.configure({
-    publishableKey: 'pk_test_LNpesCnUBN6Ax__xbmc4',
-    paypal: true,
-    cardGateway: 'stripe',
-    locale: 'es',
-    callback: function(e){
-      console.log(e);
-    }
-  });
-
-  $('#customButton').on('click', function(e) {
-    QuadernoCheckout.open({
-      redirectUrl: 'https://your-webpage.com/thank-you',
-      discount: true,
-      firstName: 'Steve',
-      lastName: 'Rogers',
-      email: 'the@nomad.com',
-      country: 'US',
-      postalCode: '11201',
-      productId: '123456',
-      billingAddress: true
-    })
-  });
-
-</script>
-```
-
-
-In case of successful payment, the  callback set in the handler will be invoked. It should accept an argument which contains a JS object with two methods: `description` and `details`.
-
-The  description should contain a brief message about the transaction , while the `details` contain a JWT with a the transaction details such as the customer ID or the transaction ID (see the Response Parameters section above for more details).
-
-<div class="center-column"></div>
-```js
-{
-  address: "",
-  businessNumber: "",
-  companyName: "",
-  country: "ES",
-  description: "Charge successfully created.",
-  details: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnYXRld2F5Ijoic3RyaXBlIiwidHlwZSI6ImNoYXJnZSIsImN1c3RvbWVyIjoiY3VzX0R4eU5SQ3djUXRYeVVwIiwiZW1haWwiOiJkYWNhc2Nvc0Bvay5jb20iLCJ0cmFuc2FjdGlvbiI6ImNoXzFEZ1ZvWkVqVkh2SU5LbGNWZVJkQWtqSSIsInByb2R1Y3RfaWQiOiIxMjM0NTYiLCJ0YXhfbmFtZSI6IklWQSIsInRheF9yYXRlIjoyMS4wLCJleHRyYV90YXhfbmFtZSI6IklSUEYiLCJleHRyYV90YXhfcmF0ZSI6LTE5LjAsImlhdCI6MTU0NDYxMzgyNH0.LgE7i_PHDVGH881HforhADlS2GbjlrXoDD7Pq4TC_5Y",
-  email: "magic@taco.com",
-  firstName: "Super",
-  lastName: "Nacho",
-  postalCode: "123456",
-  taxId: "0011223344",
-  type: "QCheckout.success"
-}
-```
+With the `session` id, `product_id` and the customer's `email` you should be able to identify the customer and fulfill the order.
