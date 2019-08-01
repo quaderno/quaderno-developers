@@ -1,16 +1,22 @@
-# Checkout: Sessions
+# Checkout
 
 ## Introduction
 
-A Checkout Session represents your customer’s session as they pay for one-time purchases or subscriptions through Checkout. You can create simple sessions by using Checkout Links but if you want to fine tune the Checkout for a specific customer or create Sessions on-the-fly, you can also create a Checkout Session directly. You can find more information about how to manage the Sessions in the [API docs](https://developers.quaderno.io/api/#checkout-sessions)
+Quaderno Checkout is a checkout form that you can use to sell your digital products and subscriptions from any website, email or message.
+
+A Checkout Session represents your customer’s session as they pay for one-off purchases or subscriptions through Checkout. 
+
+You can create simple sessions by using [Checkout Links](https://support.quaderno.io/article/115-create-checkout-link). 
+
+But if you want to fine tune the Checkout experience for a particular customer or create sessions on-the-fly, you can also create a Checkout Session directly. You can find more information about how to manage the Sessions in our [API docs](https://developers.quaderno.io/api/#checkout-sessions)
 
 ## How to create a Checkout Session and fulfill the order
 
-> In this example, we are going to learn how to create a Checkout Session for your customer and how to asynchrnonously identify the transaction once it has been completed by using the `checkout.succeeded` event.
+In this example, you will learn how to create a Checkout Session for your customer and how to asynchrnonously identify the transaction once it has been completed by using the `checkout.succeeded` event.
 
 ### Part 1: Creating the Session:
 
-Create a Checkout Session for your customer (more details [here](https://developers.quaderno.io/api/#create-a-session))
+First you need to dynamically create a Checkout Session for your customer (more details [here](https://developers.quaderno.io/api/#create-a-session))
 
 <div class="center-column"></div>
 ```shell
@@ -21,7 +27,7 @@ curl -u sk_test123123123123123:x \
      'https://demo-account.quadernoapp.com/api/checkout/sessions.json'
 ```
 
-This will return the newly created session:
+This will return a new session like the following:
 
 <div class="center-column"></div>
 ```json
@@ -62,24 +68,25 @@ This will return the newly created session:
    }
 ```
 
-The the `permalink` (https://demo-account.quadernoapp.com/checkout/session/8ccf3fdc42b85800188b113b81d3e4212ef094b3) is the URL which your customer will use to complete their purchase. 
-
-
+The session's `permalink` (https://demo-account.quadernoapp.com/checkout/session/8ccf3fdc42b85800188b113b81d3e4212ef094b3) is the URL your customer will use to complete their purchase. 
 
 <aside class="warning">
 Please keep in mind this permalink is unique for a specific customer and it can only be used once. If you need to charge another customer, create another session.
 </aside>
-<aside class="notice">
-As a general recommendation, do not dynamically generate a new session for your customer for a same purchase everytime he loads your page. First check if there's already an existing session generated for them and try to reuse if it's still pending or abandoned otherwise you might end with tons of abandoned sessions.
-</aside>
 
+<aside class="notice">
+As a general recommendation, do not dynamically generate a new session for your customer for a same purchase everytime he loads your page. First check if there's already an existing session generated for him and try to reuse it if it's still pending or abandoned. Otherwise you might end with tons of abandoned sessions.
+</aside>
 
 ### Part 2: Fulfilling the order
 
-Due to the SCA (Strong Customer Authentication), the only way to guarantee the transaction has succeeded is by checking it asynchrnously via webhooks. Once your customer visits the permalink you've set up for them and completes the purchase, you need to set up some webhooks to track succeeded checkout sessions. In this case we are subscribing to the `checkout.succeeded` event to get a notification each time a customer completes a purchase on the Checkout.
+Due to the SCA ([Strong Customer Authentication](https://en.wikipedia.org/wiki/Strong_customer_authentication)) requirements, the only way to guarantee the transaction has succeeded is by checking it asynchrnously via webhooks. 
 
+Once your customer visits the permalink and completes the purchase, you need to set up some webhooks to track succeeded sessions. 
 
-You can subscribe to the webhooks by using the API (more details [here](https://developers.quaderno.io/api/#create-a-webhook)):
+Quaderno provides a `checkout.succeeded` event to send you a notification every time a customer completes a purchase on the Checkout.
+
+You can subscribe to Quaderno webhooks by using our API (more details [here](https://developers.quaderno.io/api/#create-a-webhook)):
 
 <div class="center-column"></div>
 
@@ -101,8 +108,9 @@ or by using the web interface (in **Developers -> Webhooks -> Create Webhook**):
 
 ![checkout.succeeded](https://i.imgur.com/iKV1NbY.png)
 
+Once you've subscribed to the `checkout.succeeded` event you need to create an endpoint in your app to handle the webhooks notifications. 
 
-Once you've subscribed to the `checkout.succeeded` event you have to create an endpoint in your app to handle the webhooks notifications. This is a what a `checkout.succeeded` notification should look like:
+This is a what a `checkout.succeeded` notification should look like:
 
 <div class="center-column"></div>
 
