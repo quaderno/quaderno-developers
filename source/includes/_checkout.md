@@ -68,7 +68,7 @@ This will return a new session like the following:
    }
 ```
 
-The session's `permalink` (https://demo-account.quadernoapp.com/checkout/session/8ccf3fdc42b85800188b113b81d3e4212ef094b3) is the URL your customer will use to complete their purchase. 
+The session's `permalink` (e.g https://demo-account.quadernoapp.com/checkout/session/xxxxx) is the URL your customer will use to complete their purchase. 
 
 <aside class="warning">
 Please keep in mind this permalink is unique for a specific customer and it can only be used once. If you need to charge another customer, create another session.
