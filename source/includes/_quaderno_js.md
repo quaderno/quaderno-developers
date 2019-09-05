@@ -159,7 +159,7 @@ Remove event listeners from the DOM elements. It might be useful if you have sin
 Reads the last calculated tax and returns a `tax` object.
 
 
-### validateBusinessNumber([businessNumber, country])
+### validateBusinessNumber(businessNumber, country)
 ```js
   Quaderno.validateBusinessNumber("GB1234567", "GB").then(function(response){
     console.log(response.valid);
