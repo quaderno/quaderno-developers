@@ -138,7 +138,7 @@ Remove event listeners from the DOM elements. It might be useful if you have sin
 
 ***Async request***. Retrieve the product info identified by `productId`. Returns a `product` object in the resolve function.
 
-### getCoupon( ['couponCode'] )
+### getCoupon( couponCode )
 ```js
   Quaderno.getCoupon("couponCode").then(function(product){
     console.log(coupon.amountOff);
