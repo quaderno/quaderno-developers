@@ -19,7 +19,7 @@ Just [send us an email](mailto:support@quaderno.io). We’re always happy to hel
 
 ## The Sandbox
 
-The Quaderno Sandbox mirrors the features found on the Quaderno Production servers and let you to test our API and/or connect your trial accounts from other services like Stripe, PayPal, Braintree, etc.
+The Quaderno Sandbox mirrors the features found on the Quaderno Production servers and lets  you test our API and/or connect your trial or test mode accounts from other services like Stripe, PayPal, Braintree, etc.
 
 The Sandbox has parity with the Quaderno main feature set supported by the live environment. This means you can test your Quaderno processes and know they will behave the same on the production servers as they do in the Sandbox environment.
 
@@ -30,10 +30,12 @@ By using your Sandbox account, you can test and debug your application without r
 We’re always happy to help out with code or any other questions you might have. Please [drop us a line](mailto:support@quaderno.io).
 
 <aside class="warning">
-Please keep in mind that while you test all the API methods and plugins against the sandbox it has some limitations most notably:
+Please keep in mind that while you can test all the API methods and plugins against the sandbox it has some limitations, most notably:
 <ul>
-<li>Emails are delivered to the account email rather than to the specified recipient. </li>
-<li>There's a global 50 documents cap. If you need to create more you'll have to remove some of your previous documents.</li>
-<li>VAT numbers are not validated.</li>
+<li>Emails are delivered to the account email rather than to the specified recipient.</li>
+<li>There's a global 100 documents cap. If you need to create more you'll have to remove some of your previous documents. You can remove all your documents by navigating to **You > Purge** your data at any time.
+</li>
+<li>Tax IDs (VAT numbers, ABN, etc.)  are not validated in the Sandbox</li>
+<li>Only state tax rates are returned by the Taxes API. Local tax rates will not be returned.</li>
 </ul>
 </aside>
