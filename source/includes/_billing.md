@@ -34,7 +34,7 @@ Configures the basic checkout options that cannot be changed (unless `close()` i
 Option                   |Mandatory                                             | Description
 -------------------------|------------------------------------------------------|----------------------
 key                      |Yes                                                   | Your Quaderno publishable key.
-customer_id              |Yes                                                   | The customer ID. You can also use their Stripe, Braintree, Paymill, or PayPal IDs if the customer was created via those gateways
+customer_id              |Yes                                                   | The customer secure ID. You can also use their Stripe, Braintree, Paymill, or PayPal IDs if the customer was created via those gateways
 editable                 |No                                                    | Select wether or not your user can edit the invoices he opens
 
 ### open()
@@ -59,7 +59,7 @@ You can integrate Billing in as little as a single line of client-side code. As 
 <script
   src="https://billing.quaderno.io/billing.js" class="quaderno-billing-button"
   data-key="YOUR_QUADERNO_PUBLISHABLE_KEY"
-  data-customer-id="YOUR_QUADERNO_CUSTOMER_ID"
+  data-customer-id="CUSTOMER_SECURE_ID_OR_PAYMENT_GATEWAY_ID"
   data-label="View billing">
 </script>
 ```
@@ -72,7 +72,7 @@ Configuration options:
 Option             | Required | Description
 -------------------|----------|-------------------------------------------------------------------
 data-key           | Yes      | Your publishable key.
-data-customer-id   | Yes      | The customer ID. You can also use their Stripe, Braintree, Paymill, or PayPal IDs if the customer was created via those gateways.
+data-customer-id   | Yes      | The customer secure ID. You can also use their Stripe, Braintree, Paymill, or PayPal IDs if the customer was created via those gateways.
 data-label         | No       | The text to be shown on the default green button.
 data-editable      | No       |Allow your users to edit their billing data. The default is  true.
 
