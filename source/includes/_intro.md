@@ -35,7 +35,8 @@ Please keep in mind that while you can test all the API methods and plugins agai
 <li>Emails are delivered to the account email rather than to the specified recipient.</li>
 <li>There's a global 100 documents cap. If you need to create more you'll have to remove some of your previous documents. You can remove all your documents by navigating to **You > Purge** your data at any time.
 </li>
-<li>Tax IDs (VAT numbers, ABN, etc.)  are not validated in the Sandbox</li>
+<li>Tax IDs (VAT numbers, ABN, etc.) are not validated in the Sandbox</li>
 <li>Only state tax rates are returned by the Taxes API. Local tax rates will not be returned.</li>
+<li>Tax thresholds are not updated in the Sandbox.</li>
 </ul>
 </aside>
