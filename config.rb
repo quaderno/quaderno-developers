@@ -61,7 +61,7 @@ end
 # Active Middleman Deploy
 activate :deploy do |deploy|
   deploy.method = :rsync # https://github.com/karlfreeman/middleman-deploy/pull/136
-  deploy.host = '95.85.63.165'
+  deploy.host = '198.211.118.22'
   deploy.path = '/var/www/developers'
   deploy.user = 'root' # no default
 end
