@@ -41,8 +41,7 @@ Please keep in mind that while you can test all the API methods and plugins agai
 </ul>
 </aside>
 
-** Generally, the sandbox will return all VAT numbers as valid. However, we recently added the following so you can test different scenarios the sandbox. We've added the following test numbers on the validation endpoint:
+** Generally, the sandbox will return all VAT numbers as valid. However, we recently added the following test numbers so you can test different scenarios in your Sandbox account:
 
 - **DE111111111**: invalid number, returns `false`
 - **IE222222222**: node down, returns `null` 
-
