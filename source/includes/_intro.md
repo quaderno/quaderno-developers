@@ -33,10 +33,16 @@ We’re always happy to help out with code or any other questions you might have
 Please keep in mind that while you can test all the API methods and plugins against the sandbox it has some limitations, most notably:
 <ul>
 <li>Emails are delivered to the account email rather than to the specified recipient.</li>
-<li>There's a global 100 documents cap. If you need to create more you'll have to remove some of your previous documents. You can remove all your documents by navigating to **You > Purge** your data at any time.
+<li>There's a global 200 documents cap. If you need to create more you'll have to remove some of your previous documents. You can remove all your documents by navigating to <strong>You > Purge</strong> your data at any time.
 </li>
-<li>Tax IDs (VAT numbers, ABN, etc.) are not validated in the Sandbox</li>
+<li>Tax IDs (VAT numbers, ABN, etc.) are not validated in the Sandbox (**)</li>
 <li>Only state tax rates are returned by the Taxes API. Local tax rates will not be returned.</li>
 <li>Tax thresholds are not updated in the Sandbox.</li>
 </ul>
 </aside>
+
+** Generally, the sandbox will return all VAT numbers as valid. However, we recently added the following so you can test different scenarios the sandbox. We've added the following test numbers on the validation endpoint:
+
+- **DE111111111**: invalid number, returns `false`
+- **IE222222222**: node down, returns `null` 
+
