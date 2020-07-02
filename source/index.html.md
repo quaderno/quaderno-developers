@@ -14,7 +14,6 @@ includes:
   - intro
   - quaderno_js
   - checkout
-  - billing
   - apps
 
 search: true
