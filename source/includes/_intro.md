@@ -6,7 +6,6 @@ The documentation is organized into three major areas:
 
 - **Quaderno.js** is a javascript library that allows you to calculate sales taxes in your own checkout form.
 - **Quaderno Checkout** is a checkout form that you can use on your site to sell products and subscriptions.
-- **Quaderno Billing** is a small plugin that you can use on your site to let your customers access their receipts and edit their billing data.
 - **Quaderno API** is our billing and tax API that you can use to calculate taxes and manage receipts from your backend.
 
 **Not a developer?**
