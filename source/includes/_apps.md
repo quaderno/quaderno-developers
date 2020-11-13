@@ -115,3 +115,14 @@ Whether you are developing a mobile, web, or desktop application, it is importan
 
 You’ll want to store this access token in your database for use in the future to make requests to the Quaderno API on your user’s behalf. Make sure you keep it safe and secure, as it gives full access to your user’s account.
 
+## Revoking access
+
+To disconnect an account from your platform, POST your `client_id`, your `client_token`, and the user's access token to `/oauth/revoke`
+
+```ruby
+  HTTParty.post('https:/sandbox-quadernoapp.com/oauth/revoke', body: {
+      client_id: ENV['QUADERNO_CLIENT_ID'],
+      client_secret: ENV['QUADERNO_CLIENT_SECRET'],
+      token: USER_TOKEN
+    })
+```

@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-gem "ffi", ">= 1.9.24"
-
 # Middleman
 gem 'middleman', '~>3.3.7'
 gem 'middleman-autoprefixer', '~> 2.7.0'
