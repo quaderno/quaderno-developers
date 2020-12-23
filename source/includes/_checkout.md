@@ -6,7 +6,7 @@ Quaderno Checkout is a checkout form that you can use to sell your digital produ
 
 A Checkout Session represents your customer’s session as they pay for one-off purchases or subscriptions through Checkout. 
 
-You can create simple sessions by using [Checkout Links](https://support.quaderno.io/article/115-create-checkout-link). 
+You can create simple sessions by using [Checkout Links](https://support.quaderno.io/create-checkout-link/). 
 
 But if you want to fine tune the Checkout experience for a particular customer or create sessions on-the-fly, you can also create a Checkout Session directly. You can find more information about how to manage the Sessions in our [API docs](https://developers.quaderno.io/api/#checkout-sessions)
 
