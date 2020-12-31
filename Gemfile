@@ -11,4 +11,4 @@ gem 'middleman-sprockets', '~> 3.4.2'
 gem 'rouge', '~> 1.10.1'
 gem 'redcarpet', '~> 3.3.2'
 gem "sprockets", ">= 2.12.5"
-gem 'nokogiri', '~> 1.8.2'
+gem 'nokogiri', '~> 1.10.10'
