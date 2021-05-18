@@ -1,10 +1,10 @@
-# Quaderno REST API Docs #
+# Quaderno Developers Docs #
 
-Welcome to the [Quaderno](https://quaderno.io) API docs repository!
+Welcome to the [Quaderno](https://quaderno.io) developers docs repository!
 
 These docs are the guidebook for using our API to leverage the power of the Quaderno platform.
 
-The docs themselves are hosted at [https://developers.quaderno.io/api](https://developers.quaderno.io/api), and are best viewed there.
+The docs themselves are hosted at [https://developers.quaderno.io](https://developers.quaderno.io), and are best viewed there.
 
 If you have any suggestions, tips, or questions that you feel aren’t answered here or in our Knowledge Base, please get in touch and let us know!
 
