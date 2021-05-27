@@ -5,6 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
+  - <a href="https://developers.quaderno.io/api" target="_blank">API reference</a>
   - <a href="https://quaderno.io" target="_blank">Quaderno Homepage</a>
   - <a href="https://support.quaderno.io" target="_blank">Knowledgebase and Support</a>
   - <a href="https://github.com/quaderno/quaderno-developers" target="_blank">Contributing to Docs</a>
