@@ -1,0 +1,1258 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Quaderno API Reference</title>
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-21cb3024.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-0c8f7524.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-9597c0d4.png" class="logo" alt="" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-sandbox" class="toc-h2 toc-link" data-title="The Sandbox">The Sandbox</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#quaderno-js" class="toc-h1 toc-link" data-title="Quaderno.js">Quaderno.js</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#including-quaderno-js" class="toc-h2 toc-link" data-title="Including Quaderno.js">Including Quaderno.js</a>
+                  </li>
+                  <li>
+                    <a href="#supported-browsers" class="toc-h2 toc-link" data-title="Supported browsers">Supported browsers</a>
+                  </li>
+                  <li>
+                    <a href="#quaderno-js-api-reference" class="toc-h2 toc-link" data-title="Quaderno.js API Reference">Quaderno.js API Reference</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#init-publishablekey" class="toc-h3 toc-link" data-title="init( publishableKey )">init( publishableKey )</a>
+                          </li>
+                          <li>
+                            <a href="#bindform-formid" class="toc-h3 toc-link" data-title="bindForm( formId )">bindForm( formId )</a>
+                          </li>
+                          <li>
+                            <a href="#calculatetaxes-options" class="toc-h3 toc-link" data-title="calculateTaxes( options )">calculateTaxes( options )</a>
+                          </li>
+                          <li>
+                            <a href="#calculateprice-options" class="toc-h3 toc-link" data-title="calculatePrice([options])">calculatePrice([options])</a>
+                          </li>
+                          <li>
+                            <a href="#destroy" class="toc-h3 toc-link" data-title="destroy()">destroy()</a>
+                          </li>
+                          <li>
+                            <a href="#getproduct-productid" class="toc-h3 toc-link" data-title="getProduct( productId )">getProduct( productId )</a>
+                          </li>
+                          <li>
+                            <a href="#getcoupon-couponcode" class="toc-h3 toc-link" data-title="getCoupon( couponCode )">getCoupon( couponCode )</a>
+                          </li>
+                          <li>
+                            <a href="#getlasttax" class="toc-h3 toc-link" data-title="getLastTax()">getLastTax()</a>
+                          </li>
+                          <li>
+                            <a href="#validatebusinessnumber-businessnumber-country" class="toc-h3 toc-link" data-title="validateBusinessNumber(businessNumber, country)">validateBusinessNumber(businessNumber, country)</a>
+                          </li>
+                          <li>
+                            <a href="#the-tax-object" class="toc-h3 toc-link" data-title="The Tax object">The Tax object</a>
+                          </li>
+                          <li>
+                            <a href="#the-product-object" class="toc-h3 toc-link" data-title="The Product object">The Product object</a>
+                          </li>
+                          <li>
+                            <a href="#the-coupon-object" class="toc-h3 toc-link" data-title="The Coupon object">The Coupon object</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#how-to-initialize-quaderno-js" class="toc-h2 toc-link" data-title="How to initialize Quaderno.js">How to initialize Quaderno.js</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#simple-automatic-init" class="toc-h3 toc-link" data-title="Simple automatic init">Simple automatic init</a>
+                          </li>
+                          <li>
+                            <a href="#deferred-automatic-init" class="toc-h3 toc-link" data-title="Deferred automatic init">Deferred automatic init</a>
+                          </li>
+                          <li>
+                            <a href="#custom-init" class="toc-h3 toc-link" data-title="Custom init">Custom init</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#how-to-use-quaderno-js-to-calculate-taxes" class="toc-h2 toc-link" data-title="How to use Quaderno.js to calculate taxes">How to use Quaderno.js to calculate taxes</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#checkout" class="toc-h1 toc-link" data-title="Checkout">Checkout</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#how-to-create-a-checkout-session-and-fulfill-the-order" class="toc-h2 toc-link" data-title="How to create a Checkout Session and fulfill the order">How to create a Checkout Session and fulfill the order</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#part-1-creating-the-session" class="toc-h3 toc-link" data-title="Part 1: Creating the Session:">Part 1: Creating the Session:</a>
+                          </li>
+                          <li>
+                            <a href="#part-2-fulfilling-the-order" class="toc-h3 toc-link" data-title="Part 2: Fulfilling the order">Part 2: Fulfilling the order</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#apps" class="toc-h1 toc-link" data-title="Apps">Apps</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#connecting-your-users-39-accounts" class="toc-h2 toc-link" data-title="Connecting your users' accounts">Connecting your users' accounts</a>
+                  </li>
+                  <li>
+                    <a href="#creating-an-app" class="toc-h2 toc-link" data-title="Creating an app">Creating an app</a>
+                  </li>
+                  <li>
+                    <a href="#generating-a-link-to-the-authorization-page" class="toc-h2 toc-link" data-title="Generating a link to the authorization page">Generating a link to the authorization page</a>
+                  </li>
+                  <li>
+                    <a href="#getting-an-access-token" class="toc-h2 toc-link" data-title="Getting an access token">Getting an access token</a>
+                  </li>
+                  <li>
+                    <a href="#revoking-access" class="toc-h2 toc-link" data-title="Revoking access">Revoking access</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href="https://developers.quaderno.io/api" target="_blank">API reference</a></li>
+            <li><a href="https://quaderno.io" target="_blank">Quaderno Homepage</a></li>
+            <li><a href="https://support.quaderno.io" target="_blank">Knowledgebase and Support</a></li>
+            <li><a href="https://github.com/quaderno/quaderno-developers" target="_blank">Contributing to Docs</a></li>
+            <li><a href="https://github.com/tripit/slate" target="_blank">Documentation Powered by Slate</a><br /><br /></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Quaderno is a set of APIs to automate and improve tax management in businesses of all sizes. Here are some resources that will help you understand the basics of all of them.</p>
+
+<p>The documentation is organized into three major areas:</p>
+
+<ul>
+<li><strong>Quaderno.js</strong> is a javascript library that allows you to calculate sales taxes in your own checkout form.</li>
+<li><strong>Quaderno Checkout</strong> is a checkout form that you can use on your site to sell products and subscriptions.</li>
+<li><strong>Quaderno API</strong> is our billing and tax API that you can use to calculate taxes and manage receipts from your backend.</li>
+</ul>
+
+<p><strong>Not a developer?</strong></p>
+
+<p>A custom Quaderno integration requires you to either be or hire a developer. But you can use Quaderno through any number of <a href="https://quaderno.io/integrations/">third-parties plugins and libraries</a> built by our community, such as for Shopify, Amazon FBA, and WooCommerce.</p>
+
+<p><strong>Need more help?</strong></p>
+
+<p>Just <a href="mailto:support@quaderno.io">send us an email</a>. We’re always happy to help out with code or any other questions you might have.</p>
+<h2 id='the-sandbox'>The Sandbox</h2>
+<p>The Quaderno Sandbox mirrors the features found on the Quaderno Production servers and lets  you test our API and/or connect your trial or test mode accounts from other services like Stripe, PayPal, Braintree, etc.</p>
+
+<p>The Sandbox has parity with the Quaderno main feature set supported by the live environment. This means you can test your Quaderno processes and know they will behave the same on the production servers as they do in the Sandbox environment.</p>
+
+<p><strong>Your credentials for the Production environment does not work on the Sandbox.</strong> You need to <a href="https://sandbox-quadernoapp.com/signup">create a new account</a>.</p>
+
+<p>By using your Sandbox account, you can test and debug your application without referencing any real Quaderno users or their live Quaderno accounts. The Sandbox lets you operate your application in a safe environment and provides you a way to fine tune your Quaderno routines before moving your product into production.</p>
+
+<p>We’re always happy to help out with code or any other questions you might have. Please <a href="mailto:support@quaderno.io">drop us a line</a>.</p>
+
+<aside class="warning">
+Please keep in mind that while you can test all the API methods and plugins against the sandbox it has some limitations, most notably:
+<ul>
+<li>Emails are delivered to the account email rather than to the specified recipient.</li>
+<li>There's a global 200 documents cap. If you need to create more you'll have to remove some of your previous documents. You can remove all your documents by navigating to <strong>You > Purge</strong> your data at any time.
+</li>
+<li>Tax IDs (VAT numbers, ABN, etc.) are not validated in the Sandbox (**)</li>
+<li>Only state tax rates are returned by the Taxes API. Local tax rates will not be returned.</li>
+<li>Tax thresholds are not updated in the Sandbox.</li>
+</ul>
+</aside>
+
+<p>** Generally, the sandbox will return all VAT numbers as valid. However, we recently added the following test numbers so you can test different scenarios in your Sandbox account:</p>
+
+<ul>
+<li><strong>DE111111111</strong>: invalid number, returns <code>false</code></li>
+<li><strong>IE222222222</strong>: node down, returns <code>null</code></li>
+</ul>
+<h1 id='quaderno-js'>Quaderno.js</h1>
+<p>Quaderno.js is a handy small javascript library to calculate taxes directly from your frontend. It fits great with our own checkout experience, <a href="https://www.quaderno.io/checkout">Quaderno Checkout</a>, as well as with your own forms, to calculate taxes in real time.</p>
+
+<p>To unleash all the power of our server-side APIs like Tax calculations and Tax ID validations, Billing and Tax reporting and tracking, go check our <a href="https://developers.quaderno.io/api">API</a>.</p>
+<h2 id='including-quaderno-js'>Including Quaderno.js</h2>
+<div class="center-column"></div>
+<div class="highlight"><pre class="highlight html tab-html"><code>  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://js.quaderno.io/v4/"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div>
+<p>However you’re using Quaderno.js, you always begin by including the library and setting your <strong>public API key*</strong>.</p>
+
+<p>To get started, include this script on your pages — it should always be loaded directly from <code>https://js.quaderno.io</code></p>
+
+<p>Please note that we provide a differentiated set of publishable API keys for Quaderno.js for security reasons. These API keys are different from your account&#39;s private API key. While private API keys are meant for being used server-side, secured in your backend, these public API keys are only used by Quaderno.js, and only allow access to our tax calculations engine. No data can be leaked from your account with public keys.</p>
+<h2 id='supported-browsers'>Supported browsers</h2>
+<p>Quaderno.js strives to support all recent versions of major browsers. For the sake of security and providing the best experience to the majority of customers, we do not support browsers that are no longer receiving security updates and represent a small minority of traffic.</p>
+
+<ul>
+<li>We support Internet Explorer and Edge per <strong><a href="https://support.microsoft.com/en-us/gp/microsoft-internet-explorer">Microsoft&#39;s lifecycle policy</a></strong>.</li>
+<li>We support Chrome and Safari on all platforms and Firefox on desktop platforms.</li>
+<li>We support the Android native browser on Android 4.4 and later.</li>
+<li>We respond to bug reports but do not proactively test other mobile browsers.</li>
+</ul>
+
+<p>If you have an issue with Quaderno.js on a specific browser, please <strong><a href="mailto:support@quaderno.io">contact us</a></strong> so we can improve its support.</p>
+<h2 id='quaderno-js-api-reference'>Quaderno.js API Reference</h2>
+<p>When you include the Quaderno.js script in your page, a global <code>Quaderno</code> object will be available with the following methods:</p>
+<h3 id='init-publishablekey'>init( publishableKey )</h3><div class="highlight"><pre class="highlight javascript"><code>  <span class="nx">Quaderno</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">publishableKey</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Success</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">description</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">messages</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<p><strong><em>Async request</em></strong>. Use this method to initialize the global object <code>Quaderno</code>.</p>
+
+<p>This method returns a <code>Promise</code> which resolves if the publishableKey verification was successful. If there&#39;s any issue, this method returns a <code>Promise</code> which rejects with an <code>error</code> object. This object has either:</p>
+
+<ul>
+<li><strong>error.description</strong>: A full description of the error.</li>
+<li><strong>error.messages</strong>: If present, it indicates the affected attribute and an specific error (ie. <code>{ email: &quot;invalid&quot;, businessNumber: &quot;invalid&quot; }</code>).</li>
+</ul>
+<h3 id='bindform-formid'>bindForm( formId )</h3><div class="highlight"><pre class="highlight javascript"><code>  <span class="nx">Quaderno</span><span class="p">.</span><span class="nx">bindForm</span><span class="p">(</span><span class="dl">"</span><span class="s2">#formId</span><span class="dl">"</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Success</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">description</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">messages</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<p><strong><em>Async request</em></strong>. This method also initializes the global object <code>Quaderno</code> from a form object.</p>
+
+<p>This method returns a <code>Promise</code> which resolves if the publishableKey verification was successful. If there&#39;s any issue, this method returns a <code>Promise</code> which rejects with an <code>error</code> object. This object has either:</p>
+
+<ul>
+<li><strong>error.description</strong>: A full description of the error.</li>
+<li><strong>error.messages</strong>: A brief description if each invalid attribute.</li>
+</ul>
+<h3 id='calculatetaxes-options'>calculateTaxes( options )</h3><div class="highlight"><pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span> <span class="na">taxClass</span><span class="p">:</span> <span class="dl">'</span><span class="s1">eservice</span><span class="dl">'</span><span class="p">,</span> <span class="na">postalCode</span><span class="p">:</span> <span class="dl">'</span><span class="s1">123456</span><span class="dl">'</span><span class="p">,</span> <span class="na">city</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Dublin</span><span class="dl">'</span><span class="p">,</span> <span class="na">country</span><span class="p">:</span> <span class="dl">'</span><span class="s1">IE</span><span class="dl">'</span> <span class="p">}</span>
+
+  <span class="nx">Quaderno</span><span class="p">.</span><span class="nx">calculateTaxes</span><span class="p">(</span><span class="nx">options</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">taxObject</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">taxObject</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">taxObject</span><span class="p">.</span><span class="nx">rate</span><span class="p">,</span> <span class="nx">taxObject</span><span class="p">.</span><span class="nx">country</span><span class="p">);</span> <span class="c1">// ie. "VAT", 23, "IE"</span>
+  <span class="p">})</span>
+</code></pre></div>
+<p><strong><em>Async request</em></strong>. Calculates the taxes based on the billing data from <code>options</code> object</p>
+
+<p>Available options are documented below:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>taxClass</code></td>
+<td>No</td>
+<td>Indicates the tax class of the transaction.</td>
+</tr>
+<tr>
+<td><code>postalCode</code></td>
+<td>No</td>
+<td>ZIP or postal code.</td>
+</tr>
+<tr>
+<td><code>city</code></td>
+<td>No</td>
+<td>The customer&#39;s city. Used to make more accurate calculations based on the postal code</td>
+</tr>
+<tr>
+<td><code>country</code></td>
+<td>No</td>
+<td>ISO 3166-1 alpha-2</td>
+</tr>
+<tr>
+<td><code>businessNumber</code></td>
+<td>No</td>
+<td>A valid business number. Quaderno validates EU VAT numbers, ABN, and NZBN.</td>
+</tr>
+</tbody></table>
+
+<p>The <code>options</code> can be omitted if you&#39;ve set a form using <code>bindForm</code> and the proper <code>data-quaderno</code>.</p>
+
+<p>This method returns a <code>Promise</code> which resolves with a <code>tax</code> object.</p>
+
+<p>Note that when you calculate taxes using our <a href="https://developers.quaderno.io/api/#calculate-a-tax-rate">Tax Rates API</a>, parameters follow a slighty different naming scheme:</p>
+
+<table><thead>
+<tr>
+<th>Quaderno.js</th>
+<th>Tax Rates API</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>taxClass</code></td>
+<td><code>tax_code</code></td>
+</tr>
+<tr>
+<td><code>businessNumber</code></td>
+<td><code>tax_id</code></td>
+</tr>
+<tr>
+<td><code>taxType</code></td>
+<td><code>tax_behavior</code></td>
+</tr>
+</tbody></table>
+<h3 id='calculateprice-options'>calculatePrice([options])</h3><div class="highlight"><pre class="highlight javascript"><code>  <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span> <span class="na">amount</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="na">quantiy</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
+  <span class="nx">priceObject</span> <span class="o">=</span> <span class="nx">Quaderno</span><span class="p">.</span><span class="nx">calculatePrice</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+
+  <span class="nx">priceObject</span><span class="p">.</span><span class="nx">subtotal</span><span class="p">;</span>
+  <span class="nx">priceObject</span><span class="p">.</span><span class="nx">taxes</span><span class="p">;</span>
+</code></pre></div>
+<p>Helper method which calculates the final price of the product, tax inclusive.</p>
+
+<p>Available options are documented below:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>amount</code></td>
+<td>No</td>
+<td>Amount you are going to charge your customer..</td>
+</tr>
+<tr>
+<td><code>quantity</code></td>
+<td>No</td>
+<td>Quantity of the products.</td>
+</tr>
+<tr>
+<td><code>taxType</code></td>
+<td>No</td>
+<td>If the tax is <code>included</code> or <code>excluded</code></td>
+</tr>
+</tbody></table>
+
+<p>The <code>options</code> can be omitted if you&#39;ve set a form using <code>bindForm</code> and the proper <code>data-quaderno</code> or if you&#39;ve retrieved the product information from Quaderno with <code>getProduct</code></p>
+
+<p>This method returns a <code>price</code> object with the following attributes:</p>
+
+<ul>
+<li>subtotal: the price without taxes and discounts.</li>
+<li>taxes: the taxes amount.</li>
+<li>total: the final amount.</li>
+<li>discountedAmount: The discount amount.</li>
+</ul>
+<h3 id='destroy'>destroy()</h3><div class="highlight"><pre class="highlight javascript"><code>  <span class="nx">Quaderno</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+</code></pre></div>
+<p>Remove event listeners from the DOM elements. It might be useful if you have single-page apps and have tied the Quaderno object to a form via <code>bindForm</code> or the <a href="#quaderno-js-how-to-initialize-quaderno-js-simple-automatic-init">simple initialization</a>.</p>
+<h3 id='getproduct-productid'>getProduct( productId )</h3><div class="highlight"><pre class="highlight javascript"><code>  <span class="nx">Quaderno</span><span class="p">.</span><span class="nx">getProduct</span><span class="p">(</span><span class="dl">"</span><span class="s2">productId</span><span class="dl">"</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">product</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">product</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">product</span><span class="p">.</span><span class="nx">unitCost</span><span class="p">,</span> <span class="nx">product</span><span class="p">.</span><span class="nx">code</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<p><strong><em>Async request</em></strong>. Retrieve the product info identified by <code>productId</code>. Returns a <code>product</code> object in the resolve function.</p>
+<h3 id='getcoupon-couponcode'>getCoupon( couponCode )</h3><div class="highlight"><pre class="highlight javascript"><code>  <span class="nx">Quaderno</span><span class="p">.</span><span class="nx">getCoupon</span><span class="p">(</span><span class="dl">"</span><span class="s2">couponCode</span><span class="dl">"</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">product</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">coupon</span><span class="p">.</span><span class="nx">amountOff</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<p><strong><em>Async request</em></strong>. Retrieve the product info identified by <code>couponCode</code>. Returns a <code>coupon</code> object in the resolve function.</p>
+<h3 id='getlasttax'>getLastTax()</h3><div class="highlight"><pre class="highlight javascript"><code>  <span class="nx">taxes</span> <span class="o">=</span> <span class="nx">Quaderno</span><span class="p">.</span><span class="nx">getLastTax</span><span class="p">();</span>
+
+  <span class="nx">taxes</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+  <span class="nx">taxes</span><span class="p">.</span><span class="nx">rate</span><span class="p">;</span>
+  <span class="nx">taxe</span><span class="p">.</span><span class="nx">country</span><span class="p">;</span>
+</code></pre></div>
+<p>Reads the last calculated tax and returns a <code>tax</code> object.</p>
+<h3 id='validatebusinessnumber-businessnumber-country'>validateBusinessNumber(businessNumber, country)</h3><div class="highlight"><pre class="highlight javascript"><code>  <span class="nx">Quaderno</span><span class="p">.</span><span class="nx">validateBusinessNumber</span><span class="p">(</span><span class="dl">"</span><span class="s2">GB1234567</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">GB</span><span class="dl">"</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">valid</span><span class="p">);</span>
+  <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">descriptions</span><span class="p">);</span>
+  <span class="p">});</span>
+
+</code></pre></div>
+<p><strong><em>Async request</em></strong>. This method validates the customer&#39;s business number. Currently Quaderno validates EU VAT numbers, ABN, and NZBN.</p>
+
+<p>Please keep in mind that business numbers are not actually validated while using the Sandbox.</p>
+
+<p>This method returns a <code>result</code> object with the following attribute:</p>
+
+<ul>
+<li><strong>result.valid</strong>: true (valid business number), false (invalid business number) or null (the external validation service is temporarily unavailable).</li>
+</ul>
+<h3 id='the-tax-object'>The Tax object</h3>
+<p>This object is passed by the resolve function of the <code>Promise</code> returned by the <code>Quaderno.calculateTaxes</code> method or by invoking <code>Quaderno.getLastTax</code>.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>country</code></td>
+<td>A valid ISO 3166-1 alpha-2 code.</td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td>State/Region/Province.</td>
+</tr>
+<tr>
+<td><code>county</code></td>
+<td>County (only for US sales tax).</td>
+</tr>
+<tr>
+<td><code>city</code></td>
+<td>City (only for US sales tax)</td>
+</tr>
+<tr>
+<td><code>countyTaxCode</code></td>
+<td>County tax code (if applicable on US sales taxes)</td>
+</tr>
+<tr>
+<td><code>cityTaxCode</code></td>
+<td>City tax code (if applicable on US sales taxes)</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>Name of the tax.</td>
+</tr>
+<tr>
+<td><code>rate</code></td>
+<td>Tax rate in percentage (6.5).</td>
+</tr>
+<tr>
+<td><code>extraName</code></td>
+<td>Name of the extra tax.</td>
+</tr>
+<tr>
+<td><code>extraRate</code></td>
+<td>Tax rate in percentage of the extra tax.</td>
+</tr>
+<tr>
+<td><code>taxClass</code></td>
+<td>The tax class of the transaction. Can be one of the following: <code>standard</code>, <code>eservice</code>, <code>ebook</code> or <code>saas</code>.</td>
+</tr>
+<tr>
+<td><code>businessNumberValid</code></td>
+<td>This attribute is only present if you&#39;ve set a <code>businessNumber</code> during the calculation request. It can be <code>true</code>, <code>null</code> or <code>false</code>.</td>
+</tr>
+</tbody></table>
+<h3 id='the-product-object'>The Product object</h3>
+<p>This object contains the relevant information related to the productID you&#39;ve set. It&#39;s returned by the resolve function of <code>Quaderno.getProduct</code>.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>code</code></td>
+<td>The product code in Quaderno.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>The name of the product.</td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>URL to the image of the product.</td>
+</tr>
+<tr>
+<td><code>unitCost</code></td>
+<td>Unit price of the product.</td>
+</tr>
+<tr>
+<td><code>currency</code></td>
+<td>A valid ISO-4271 code.</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td>Indicates if the product is either a <code>subscription</code> or a <code>one-off</code> sale.</td>
+</tr>
+<tr>
+<td><code>taxClass</code></td>
+<td>The tax class for the product. Can be one of the following: <code>standard</code>, <code>eservice</code>, <code>ebook</code> or <code>saas</code>.</td>
+</tr>
+<tr>
+<td><code>taxType</code></td>
+<td>Indicates if the tax is included or excluded from the product price.</td>
+</tr>
+</tbody></table>
+<h3 id='the-coupon-object'>The Coupon object</h3>
+<p>This object contains the relevant information related to the couponCode you&#39;ve set. It&#39;s returned by the resolve function of <code>Quaderno.getCoupon</code>.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>code</code></td>
+<td>The product code in Quaderno.</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td>Indicates if the coupon is <code>percent_off</code> or <code>amount_off</code></td>
+</tr>
+<tr>
+<td><code>amountOff</code></td>
+<td>The amount off.</td>
+</tr>
+<tr>
+<td><code>currency</code></td>
+<td>The currency of the amount off.</td>
+</tr>
+<tr>
+<td><code>percentOff</code></td>
+<td>The percent off.</td>
+</tr>
+<tr>
+<td><code>redeemable</code></td>
+<td>Indicates if the coupon is redeemable</td>
+</tr>
+</tbody></table>
+<h2 id='how-to-initialize-quaderno-js'>How to initialize Quaderno.js</h2><h3 id='simple-automatic-init'>Simple automatic init</h3>
+<p>Automatically loads quaderno.js if the form has the <code>quaderno-payment-form</code> ID and a valid <code>data-publishable-key</code>. Optionally you can also set a <code>data-product-id</code>.</p>
+
+<ul>
+<li><strong><em>data-publishable-key</em></strong>: Your Quaderno public key</li>
+</ul>
+
+<p>The input fields will be automatically detected as long as they have the <code>data-quaderno</code> with their definition:</p>
+
+<ul>
+<li><strong><em>postalCode</em></strong> (highly recommendable)</li>
+<li><strong><em>country</em></strong> (mandatory)</li>
+<li><strong><em>businessNumber</em></strong></li>
+<li><strong><em>city</em></strong></li>
+<li><strong><em>productId</em></strong></li>
+<li><strong><em>amount</em></strong></li>
+<li><strong><em>quantity</em></strong></li>
+<li><strong><em>taxType</em></strong></li>
+<li><strong><em>taxClass</em></strong></li>
+<li><strong><em>productId</em></strong></li>
+<li><strong><em>couponCode</em></strong></li>
+</ul>
+
+<div class="center-column"></div>
+<div class="highlight"><pre class="highlight html tab-html"><code>    <span class="nt">&lt;head&gt;</span>
+      <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://js.quaderno.io/v4/"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+
+    <span class="nt">&lt;body&gt;</span>
+      <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"quaderno-payment-form"</span> <span class="na">data-publishable-key=</span><span class="s">"pk_xxxxxxxx"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;select</span> <span class="na">data-quaderno=</span><span class="s">"country"</span><span class="nt">&gt;</span> … <span class="nt">&lt;/select&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">data-quaderno=</span><span class="s">"postalCode"</span> <span class="nt">/&gt;</span>
+        ...
+      <span class="nt">&lt;/form&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+</code></pre></div><h3 id='deferred-automatic-init'>Deferred automatic init</h3>
+<p>If you don&#39;t want the form to load automatically, you can load it later by not using the <strong><em>&quot;quaderno-payment-form&quot;</em></strong> id, and calling the <code>bindForm</code> method whenever you want.</p>
+
+<div class="center-column"></div>
+<div class="highlight"><pre class="highlight html tab-html"><code>    <span class="nt">&lt;head&gt;</span>
+      <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://js.quaderno.io/v4/"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+
+    <span class="nt">&lt;body&gt;</span>
+      <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"payment-form"</span> <span class="na">data-publishable-key=</span><span class="s">"pk_xxxxxxxx"</span> <span class="na">data-product-id=</span><span class="s">"prod_xxxxxxxx"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;select</span> <span class="na">data-quaderno=</span><span class="s">"country"</span> <span class="nt">/&gt;</span> … <span class="nt">&lt;/select&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">data-quaderno=</span><span class="s">"postalCode"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- … --&gt;</span>
+      <span class="nt">&lt;/form&gt;</span>
+
+      <span class="nt">&lt;script&gt;</span>
+        <span class="nx">Quaderno</span><span class="p">.</span><span class="nx">bindForm</span><span class="p">(</span><span class="dl">'</span><span class="s1">#payment-form</span><span class="dl">'</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">product</span><span class="p">);</span>
+        <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">description</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">messages</span><span class="p">);</span>
+        <span class="p">});</span>
+      <span class="nt">&lt;/script&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+</code></pre></div><h3 id='custom-init'>Custom init</h3>
+<p>Futhermore, you can also dissociate Quaderno from the DOM by setting the Quaderno object properties by yourself. This means you need to explicitly set the minimum mandatory configuration options during the <code>init</code> call.</p>
+
+<ul>
+<li>publishableKey: Your Quaderno publishable key.</li>
+<li>productId: The ID of the product registered in Quaderno.</li>
+</ul>
+
+<div class="center-column"></div>
+<div class="highlight"><pre class="highlight html tab-html"><code>    <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"country"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span&gt;</span>Country<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"country"</span> <span class="na">name=</span><span class="s">"country"</span> <span class="na">value=</span><span class="s">"ES"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/label&gt;</span>
+
+    <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"postal-code"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span&gt;</span>Postal code<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"postal-code"</span> <span class="na">name=</span><span class="s">"postal-code"</span> <span class="na">value=</span><span class="s">"35007"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/label&gt;</span>
+
+    <span class="nt">&lt;script&gt;</span>
+      <span class="nx">Quaderno</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">publishableKey</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Success</span><span class="dl">'</span><span class="p">);</span>
+      <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">description</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">messages</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="nt">&lt;/script&gt;</span>
+</code></pre></div><h2 id='how-to-use-quaderno-js-to-calculate-taxes'>How to use Quaderno.js to calculate taxes</h2>
+<blockquote>
+<p>In this example, we are going to handle updates on the relevant tax-related fields to force taxes calculations and show it in a <code>&lt;span&gt;</code>:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code>  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"country"</span><span class="nt">&gt;</span>
+    Country
+    <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"country"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"US"</span> <span class="na">selected</span><span class="nt">&gt;</span>United States<span class="nt">&lt;/option&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"GB"</span><span class="nt">&gt;</span>United Kingdom<span class="nt">&lt;/option&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"DE"</span><span class="nt">&gt;</span>Germany<span class="nt">&lt;/option&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"FR"</span><span class="nt">&gt;</span>France<span class="nt">&lt;/option&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"IT"</span><span class="nt">&gt;</span>Italy<span class="nt">&lt;/option&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"ES"</span><span class="nt">&gt;</span>Spain<span class="nt">&lt;/option&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"CA"</span><span class="nt">&gt;</span>Canada<span class="nt">&lt;/option&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"AU"</span><span class="nt">&gt;</span>Australia<span class="nt">&lt;/option&gt;</span>
+      …
+    <span class="nt">&lt;/select&gt;</span>
+  <span class="nt">&lt;/label&gt;</span>
+
+  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"postal-code"</span><span class="nt">&gt;</span>
+    Postal code
+    <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"postal-code"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/label&gt;</span>
+
+  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"business-number"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"business-number"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/label&gt;</span>
+
+  Taxes: <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">"tax-rate"</span><span class="nt">&gt;&lt;/span&gt;</span>
+
+  <span class="nt">&lt;script&gt;</span>
+    <span class="kd">function</span> <span class="nx">reloadTaxes</span><span class="p">(</span><span class="nx">options</span><span class="p">){</span>
+      <span class="nx">Quaderno</span><span class="p">.</span><span class="nx">calculateTaxes</span><span class="p">(</span><span class="nx">options</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">taxObject</span><span class="p">){</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">tax-rate</span><span class="dl">'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">taxObject</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">taxObject</span><span class="p">.</span><span class="nx">rate</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">%</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// ie.: VAT 20%</span>
+      <span class="p">})</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Handle the change events on the relevant user-inputs</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#country</span><span class="dl">'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">change</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">country</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span>
+      <span class="nx">postalCode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#postal-code</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span>
+      <span class="nx">businessNumber</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#business-number</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span>
+
+      <span class="nx">reloadTaxes</span><span class="p">({</span> <span class="na">country</span><span class="p">:</span> <span class="nx">country</span><span class="p">,</span> <span class="na">postalCode</span><span class="p">:</span> <span class="nx">postalCode</span><span class="p">,</span> <span class="na">businessNumber</span><span class="p">:</span> <span class="nx">businessNumber</span><span class="p">})</span>
+    <span class="p">})</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#postal-code</span><span class="dl">'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">change</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">postalCode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span>
+      <span class="nx">country</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#country</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span>
+      <span class="nx">businessNumber</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#business-number</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span>
+
+      <span class="nx">reloadTaxes</span><span class="p">({</span> <span class="na">country</span><span class="p">:</span> <span class="nx">country</span><span class="p">,</span> <span class="na">postalCode</span><span class="p">:</span> <span class="nx">postalCode</span><span class="p">,</span> <span class="na">businessNumber</span><span class="p">:</span> <span class="nx">businessNumber</span> <span class="p">})</span>
+    <span class="p">})</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#business-number</span><span class="dl">'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">change</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">businessNumber</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span>
+      <span class="nx">country</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#country</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span>
+      <span class="nx">postalCode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#postal-code</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span>
+
+      <span class="nx">Quaderno</span><span class="p">.</span><span class="nx">validateBusinessNumber</span><span class="p">(</span><span class="nx">businessNumber</span><span class="p">,</span> <span class="nx">country</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">reloadTaxes</span><span class="p">({</span> <span class="na">businessNumber</span><span class="p">:</span> <span class="nx">businessNumber</span><span class="p">,</span> <span class="na">country</span><span class="p">:</span> <span class="nx">country</span><span class="p">,</span> <span class="na">postalCode</span><span class="p">:</span> <span class="nx">postalCode</span> <span class="p">})</span>
+      <span class="p">})</span>
+    <span class="p">})</span>
+  <span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+<p>You can use Quaderno.js to calculate taxes by invoking the method <code>Quaderno.calculateTaxes</code>.</p>
+
+<p>If you are showing real time taxes calculations it&#39;s usually a good idea to force taxes calculations when the country, postal code or business number have changed.</p>
+<h1 id='checkout'>Checkout</h1>
+<p>Quaderno Checkout is a checkout form that you can use to sell your digital products and subscriptions from any website, email or message.</p>
+
+<p>A Checkout Session represents your customer’s session as they pay for one-off purchases or subscriptions through Checkout.</p>
+
+<p>You can create simple sessions by using <a href="https://support.quaderno.io/create-checkout-link/">Checkout Links</a>.</p>
+
+<p>But if you want to fine tune the Checkout experience for a particular customer or create sessions on-the-fly, you can also create a Checkout Session directly. You can find more information about how to manage the Sessions in our <a href="https://developers.quaderno.io/api/#checkout-sessions">API docs</a></p>
+<h2 id='how-to-create-a-checkout-session-and-fulfill-the-order'>How to create a Checkout Session and fulfill the order</h2>
+<p>In this example, you will learn how to create a Checkout Session for your customer and how to asynchrnonously identify the transaction once it has been completed by using the <code>checkout.succeeded</code> event.</p>
+<h3 id='part-1-creating-the-session'>Part 1: Creating the Session:</h3>
+<p>First you need to dynamically create a Checkout Session for your customer (more details <a href="https://developers.quaderno.io/api/#create-a-session">here</a>)</p>
+
+<div class="center-column"></div>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-u</span> sk_test123123123123123:x <span class="se">\</span>
+     <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+     <span class="nt">-X</span> POST <span class="se">\</span>
+     <span class="nt">-d</span> <span class="s1">'{"billing_details_collection":"auto","cancel_url":"string","coupon_collection":true,"customer":{"first_name":"John","last_name":"Doe","email":"john@doe.com"},"items":[{"product":"prod_61ffa845b4a0b8"}]}'</span> <span class="se">\</span>
+     <span class="s1">'https://demo-account.quadernoapp.com/api/checkout/sessions.json'</span>
+</code></pre></div>
+<p>This will return a new session like the following:</p>
+
+<div class="center-column"></div>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"billing_details_collection"</span><span class="p">:</span><span class="s2">"required"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cancel_url"</span><span class="p">:</span><span class="s2">"http://go.back.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"coupon_collection"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"locale"</span><span class="p">:</span><span class="s2">"auto"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"payment_methods"</span><span class="p">:[</span><span class="s2">"card"</span><span class="p">,</span><span class="w"> </span><span class="s2">"paypal"</span><span class="p">],</span><span class="w">
+      </span><span class="nl">"success_url"</span><span class="p">:</span><span class="s2">"http://success.com?prod=1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom"</span><span class="p">:{},</span><span class="w">
+      </span><span class="nl">"items"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"product"</span><span class="p">:</span><span class="s2">"prod_61ffa845b4a0b8"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"amount"</span><span class="p">:</span><span class="mf">999.0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"A test item"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="s2">"This a test item."</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"customer"</span><span class="p">:{</span><span class="w">
+         </span><span class="nl">"billing_city"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"billing_country"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"billing_postal_code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"billing_street_line_1"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"billing_street_line_2"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"company"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"email"</span><span class="p">:</span><span class="s2">"john@doe.com"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"tax_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"business_number"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"permalink"</span><span class="p">:</span><span class="s2">"https://demo-account.quadernoapp.com/checkout/session/8ccf3fdc42b85800188b113b81d3e4212ef094b3"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>The session&#39;s <code>permalink</code> (e.g https://demo-account.quadernoapp.com/checkout/session/xxxxx) is the URL your customer will use to complete their purchase.</p>
+
+<aside class="warning">
+Please keep in mind this permalink is unique for a specific customer and it can only be used once. If you need to charge another customer, create another session.
+</aside>
+
+<aside class="notice">
+As a general recommendation, do not dynamically generate a new session for your customer for a same purchase everytime he loads your page. First check if there's already an existing session generated for him and try to reuse it if it's still pending or abandoned. Otherwise you might end with tons of abandoned sessions.
+</aside>
+<h3 id='part-2-fulfilling-the-order'>Part 2: Fulfilling the order</h3>
+<p>Due to the SCA (<a href="https://en.wikipedia.org/wiki/Strong_customer_authentication">Strong Customer Authentication</a>) requirements, the only way to guarantee the transaction has succeeded is by checking it asynchrnously via webhooks.</p>
+
+<p>Once your customer visits the permalink and completes the purchase, you need to set up some webhooks to track succeeded sessions.</p>
+
+<p>Quaderno provides a <code>checkout.succeeded</code> event to send you a notification every time a customer completes a purchase on the Checkout.</p>
+
+<p>You can subscribe to Quaderno webhooks by using our API (more details <a href="https://developers.quaderno.io/api/#create-a-webhook">here</a>):</p>
+
+<div class="center-column"></div>
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># body</span>
+<span class="s1">'{
+    "url": "http://yourapp.com/notifications",
+    "events_types": ["checkout.succeed"]
+}'</span>
+
+curl <span class="nt">-u</span> YOUR_API_KEY:x <span class="se">\</span>
+     <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+     <span class="nt">-X</span> POST <span class="se">\</span>
+     <span class="nt">--data-binary</span> @body.json <span class="se">\</span>
+     <span class="s1">'https://ACCOUNT_NAME.quadernoapp.com/api/webhooks.json'</span>
+</code></pre></div>
+<p>or by using the web interface (in <strong>Developers -&gt; Webhooks -&gt; Create Webhook</strong>):</p>
+
+<p><img src="https://i.imgur.com/iKV1NbY.png" alt="checkout.succeeded" /></p>
+
+<p>Once you&#39;ve subscribed to the <code>checkout.succeeded</code> event you need to create an endpoint in your app to handle the webhooks notifications.</p>
+
+<p>This is a what a <code>checkout.succeeded</code> notification should look like:</p>
+
+<div class="center-column"></div>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="nl">"event_type"</span><span class="p">:</span><span class="s2">"checkout.succeeded"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"data"</span><span class="p">:{</span><span class="w">
+      </span><span class="nl">"object"</span><span class="p">:{</span><span class="w">
+         </span><span class="nl">"message"</span><span class="p">:{</span><span class="w">
+            </span><span class="nl">"response_message"</span><span class="p">:</span><span class="s2">"Checkout succeeded"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status_code"</span><span class="p">:</span><span class="mi">200</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nl">"transaction_details"</span><span class="p">:{</span><span class="w">
+            </span><span class="nl">"session"</span><span class="p">:</span><span class="mi">43</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"session_permalink"</span><span class="p">:</span><span class="s2">"https://demo.quadernoapp.com/checkout/session/8ccf3fdc42b85800188b113b81d3e4212ef094b3"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"gateway"</span><span class="p">:</span><span class="s2">"stripe"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"charge"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="s2">"Unicorn"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer"</span><span class="p">:</span><span class="s2">"cus_FXesSyaK3CG8Oz"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"email"</span><span class="p">:</span><span class="s2">"john@doe.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"transaction"</span><span class="p">:</span><span class="s2">"pi_1F2ZYtEjVHvINKlcq2as8H5V"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_id"</span><span class="p">:</span><span class="s2">"prod_61ffa845b4a0b8"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tax_name"</span><span class="p">:</span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tax_rate"</span><span class="p">:</span><span class="mf">20.0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"extra_tax_name"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"extra_tax_rate"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"iat"</span><span class="p">:</span><span class="mi">1564647784</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"amount_cents"</span><span class="p">:</span><span class="mi">1500</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"amount"</span><span class="p">:</span><span class="s2">"15.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nl">"contact"</span><span class="p">:{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">547540</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"kind"</span><span class="p">:</span><span class="s2">"company"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"first_name"</span><span class="p">:</span><span class="s2">"John "</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"full_name"</span><span class="p">:</span><span class="s2">"John  Doe"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"contact_name"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"street_line_1"</span><span class="p">:</span><span class="s2">"Fake Street 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"postal_code"</span><span class="p">:</span><span class="s2">"SW15 5PU"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"city"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"region"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"country"</span><span class="p">:</span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"email"</span><span class="p">:</span><span class="s2">"john@doe.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"web"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"language"</span><span class="p">:</span><span class="s2">"EN"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tax_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>With the <code>session</code> id, <code>product_id</code> and the customer&#39;s <code>email</code> you should be able to identify the customer and fulfill the order.</p>
+<h1 id='apps'>Apps</h1>
+<p>With the Quaderno API, it’s easy to build a partner integration to add tax management and billing features to your product.</p>
+
+<p>For example, if you are a marketplace, you can integrate sales tax calculation using the Quaderno API so your users can calculate taxes automatically in their checkout forms depending on their customers&#39; locations. But it’s not just marketplaces that work great with Quaderno - we’ve seen partner integrations built with all kinds of software from tools to manage sport clubs to WordPress blogs.</p>
+
+<p>Integrating with Quaderno has the power to add huge value for your users, streamlining their businesses processes and providing a great experience.</p>
+
+<p>Every partner integration is different, so this document can’t tell you exactly what to do, but we’ll explain the flows you should handle, and give you some ideas of how to provide the best experience for your users.</p>
+<h2 id='connecting-your-users-39-accounts'>Connecting your users&#39; accounts</h2>
+<p>To calculate taxes or issue receipts for your users, you’ll need access to their Quaderno account so you can make API requests on their behalf.</p>
+
+<p>Our OAuth flow allows you to securely obtain an access token for a Quaderno account without having to have your user’s password or do any manual setup.</p>
+
+<p>There are four key benefits to getting access to your users’ accounts using OAuth:</p>
+
+<ul>
+<li><strong>It’s secure</strong>: Your users have a secure way to grant you access to their account without needing to send you their login credentials or an access token. They only need to tell us that you may have access through a simple online process.</li>
+<li><strong>It’s fast</strong>: You only need to generate and send your user to a link to our OAuth flow. From there, they’ll create a Quaderno account or sign in to their existing one, approve your access to their account, and then we’ll send them right back to you with an access token.</li>
+<li><strong>It’s future-proof</strong>: As the Quaderno API gets better and better over time and offers new functionality, you’ll be able to stay up-to-date and use all the latest features</li>
+</ul>
+
+<p>The process for your user looks like this:</p>
+
+<ol>
+<li>Your user clicks a button in your UI to start the process of connecting with Quaderno.</li>
+<li>You generate a link to the authorization page, embedding details of your app (which we’ll set up next) as well as a scope to specify the level of access you want your user to give you.</li>
+<li>You redirect your user to the generated link. Your user lands on our site, where they create a Quaderno account or log in to their existing one, and agree to grant your app access.</li>
+<li>We redirect your user’s browser back to you with a code query parameter.</li>
+<li>You exchange the code for a permanent access token, which you store so that you can use it to make API requests on your user’s behalf.</li>
+</ol>
+<h2 id='creating-an-app'>Creating an app</h2>
+<p>Before we can get started, you need to create an &quot;app&quot; which represents your partner integration in the Quaderno system. You’ll be issued with a client ID and secret, which you’ll use to identify yourself when sending users to the OAuth flow and swapping codes for access tokens.</p>
+
+<p>First <a href="https://sandbox-quadernoapp.com/signup">sign up for a Quaderno account</a> in our sandbox testing environment and then <a href="https://sandbox-quadernoapp.com/oauth/applications/new">create an app</a>.</p>
+
+<p>You’ll need to provide a name and the URL of your website (where users can go to read more about your product or your integration with Quaderno). </p>
+
+<p>Once your user has completed the OAuth flow, they will be redirected to your application using the <code>redirect_url</code> parameter you provide. For security reasons, this can’t be just any internet URL, so you will also need to configure one callback URL here (which must exactly match the parameter). </p>
+
+<p>Once you’ve created an app, you’ll see it in the <a href="https://sandbox-quadernoapp.com/oauth/applications">list of your apps</a>. Click on your newly-created app, and take a note of the Client ID and Client Secret.</p>
+<h2 id='generating-a-link-to-the-authorization-page'>Generating a link to the authorization page</h2>
+<p>First, you need to install an Oauth client library. For example, in Ruby you can use the oauth2 gem:</p>
+
+<div class="center-column"></div>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="n">echo</span> <span class="s2">"gem 'oauth2'"</span> <span class="o">&gt;&gt;</span> <span class="no">Gemfile</span>
+<span class="n">bundle</span> <span class="n">install</span>
+</code></pre></div>
+<p>Once we’ve installed the library, we can build a link to the authorization page. We’ll have to pass in a number of parameters, including the <code>client_id</code> and <code>client_secret</code>, as well as a few parameters that will vary by library. These can include:</p>
+
+<table><thead>
+<tr>
+<th>Option</th>
+<th>Required</th>
+<th> Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>redirect_uri</td>
+<td>Yes</td>
+<td>The URL to send your users to once they&#39;ve agreed to connect their account to Quaderno (as well if they deny authorisation or something goes wrong, in which case we&#39;ll pass you details of the error). This must exactly match one of the callback URLs you specified above.</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>No</td>
+<td>The level of access you want to your users&#39; Quaderno accounts - this may either be <code>read_write</code> or <code>read_only</code>. Default is <code>read_only</code>.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>No</td>
+<td>Any value you pass in here will be included as a querystring parameter when we redirect back to your redirect URL. Please note that this value can be tampered with by your user, and so shouldn&#39;t be trusted implicitly. We recommend using this parameter for a CSRF token.</td>
+</tr>
+</tbody></table>
+
+<div class="center-column"></div>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'oauth2'</span>
+
+<span class="c1"># You should store your client ID and secret in environment variables rather than</span>
+<span class="c1"># committing them with your code</span>
+<span class="n">oauth</span> <span class="o">=</span> <span class="no">OAuth2</span><span class="o">::</span><span class="no">Client</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'QUADERNO_CLIENT_ID'</span><span class="p">],</span>
+                           <span class="no">ENV</span><span class="p">[</span><span class="s1">'QUADERNO_CLIENT_SECRET'</span><span class="p">],</span>
+                           <span class="ss">site: </span><span class="s1">'https://sandbox-quadernoapp.com'</span><span class="p">,</span>
+                           <span class="ss">authorize_url: </span><span class="s1">'/oauth/authorize'</span><span class="p">,</span>
+                           <span class="ss">token_url: </span><span class="s1">'/oauth/token'</span><span class="p">)</span>
+
+<span class="n">authorize_url</span> <span class="o">=</span> <span class="n">oauth</span><span class="p">.</span><span class="nf">auth_code</span><span class="p">.</span><span class="nf">authorize_url</span><span class="p">(</span><span class="ss">redirect_uri: </span><span class="s1">'https://yourapp.com/redirect'</span><span class="p">,</span> 
+                                              <span class="ss">scope: </span><span class="s1">'read_only'</span><span class="p">)</span>
+
+<span class="n">redirect_to</span> <span class="n">authorize_url</span>
+</code></pre></div>
+<p>Run this code to generate a link to the OAuth flow. Head over to the link you’ve just generated in an Incognito window, and you’ll see our OAuth flow.</p>
+<h2 id='getting-an-access-token'>Getting an access token</h2>
+<p>On the signup form, we recommend creating a second sandbox account using a different email address. This will replicate what your users will experience when connecting to your partner integration, and will give you an example account which you can use from the perspective of one of your users.</p>
+
+<p>Once your user has either signed up or logged in, and then approved your app’s access to their account, they’ll be sent to your app’s redirect URI with a temporary code which you’ll see in the query parameters, as well as any state you provided.</p>
+
+<p>You should use the OAuth client library we set up earlier to fetch an access token using the code. This is a permanent access token which allows you to use the API on behalf of your merchant at any time.</p>
+
+<div class="center-column"></div>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'oauth2'</span>
+
+<span class="n">oauth</span> <span class="o">=</span> <span class="no">OAuth2</span><span class="o">::</span><span class="no">Client</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'QUADERNO_CLIENT_ID'</span><span class="p">],</span>
+                           <span class="no">ENV</span><span class="p">[</span><span class="s1">'QUADERNO_CLIENT_SECRET'</span><span class="p">],</span>
+                           <span class="ss">site: </span><span class="s1">'https://sandbox-quadernoapp.com'</span><span class="p">,</span>
+                           <span class="ss">authorize_url: </span><span class="s1">'/oauth/authorize'</span><span class="p">,</span>
+                           <span class="ss">token_url: </span><span class="s1">'/oauth/token'</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">oauth</span><span class="p">.</span><span class="nf">auth_code</span><span class="p">.</span><span class="nf">get_token</span><span class="p">(</span>
+  <span class="n">params</span><span class="p">[</span><span class="ss">:code</span><span class="p">],</span> <span class="c1"># use exactly the same access token as you did in the last step</span>
+  <span class="ss">redirect_uri: </span><span class="s1">'https://yourapp.com/redirect'</span>
+<span class="p">)</span>
+
+<span class="c1"># You should store the user's access token - you'll need it to make API requests on their</span>
+<span class="c1"># behalf in future. If you want to handle webhooks for your users, you should also store</span>
+<span class="c1"># their account ID which will allow you to identify webhooks belonging to them.</span>
+<span class="n">current_user</span><span class="p">.</span><span class="nf">update!</span><span class="p">(</span><span class="ss">quaderno_access_token: </span><span class="n">response</span><span class="p">.</span><span class="nf">token</span><span class="p">,</span>
+                     <span class="ss">quaderno_account_id: </span><span class="n">response</span><span class="p">[</span><span class="s1">'account_id'</span><span class="p">])</span>
+</code></pre></div>
+<p>Whether you are developing a mobile, web, or desktop application, it is important not to pass the client secret to your user’s device as it could be used to impersonate your app. The process of exchanging a code for an access token should be done on your server so your client secret can be kept private.</p>
+
+<p>You’ll want to store this access token in your database for use in the future to make requests to the Quaderno API on your user’s behalf. Make sure you keep it safe and secure, as it gives full access to your user’s account.</p>
+<h2 id='revoking-access'>Revoking access</h2>
+<p>To disconnect an account from your platform, POST your <code>client_id</code>, your <code>client_token</code>, and the user&#39;s access token to <code>/oauth/revoke</code></p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code>  <span class="no">HTTParty</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="s1">'https:/sandbox-quadernoapp.com/oauth/revoke'</span><span class="p">,</span> <span class="ss">body: </span><span class="p">{</span>
+      <span class="ss">client_id: </span><span class="no">ENV</span><span class="p">[</span><span class="s1">'QUADERNO_CLIENT_ID'</span><span class="p">],</span>
+      <span class="ss">client_secret: </span><span class="no">ENV</span><span class="p">[</span><span class="s1">'QUADERNO_CLIENT_SECRET'</span><span class="p">],</span>
+      <span class="ss">token: </span><span class="no">USER_TOKEN</span>
+    <span class="p">})</span>
+</code></pre></div>
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
