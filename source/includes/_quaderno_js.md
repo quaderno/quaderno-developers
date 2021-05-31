@@ -1,15 +1,21 @@
 # Quaderno.js
 
-This is the API reference for Quaderno.js. Use Quaderno.js’ APIs to calculate taxes in your forms in real time.
+Quaderno.js is a handy small javascript library to calculate taxes directly from your frontend. It fits great with our own checkout experience, [Quaderno Checkout](https://www.quaderno.io/checkout), as well as with your own forms, to calculate taxes in real time.
+
+To unleash all the power of our server-side APIs like Tax calculations and Tax ID validations, Billing and Tax reporting and tracking, go check our [API](https://developers.quaderno.io/api).
 
 ## Including Quaderno.js
-
-However you’re using Quaderno.js, you always begin by including the library and setting your API key. To get started, include this script on your pages — it should always be loaded directly from https://js.quaderno.io:
 
 <div class="center-column"></div>
 ```html
   <script src="https://js.quaderno.io/v4/"></script>
 ```
+
+However you’re using Quaderno.js, you always begin by including the library and setting your __public API key*__.
+
+To get started, include this script on your pages — it should always be loaded directly from `https://js.quaderno.io`
+
+Please note that we provide a differentiated set of publishable API keys for Quaderno.js for security reasons. These API keys are different from your account's private API key. While private API keys are meant for being used server-side, secured in your backend, these public API keys are only used by Quaderno.js, and only allow access to our tax calculations engine. No data can be leaked from your account with public keys.
 
 ## Supported browsers
 
@@ -22,7 +28,7 @@ Quaderno.js strives to support all recent versions of major browsers. For the sa
 
 If you have an issue with Quaderno.js on a specific browser, please **[contact us](mailto:support@quaderno.io)** so we can improve its support.
 
-## Reference
+## Quaderno.js API Reference
 
 When you include the Quaderno.js script in your page, a global `Quaderno` object will be available with the following methods:
 
@@ -88,6 +94,13 @@ The `options` can be omitted if you've set a form using `bindForm` and the prope
 
 This method returns a `Promise` which resolves with a `tax` object.
 
+Note that when you calculate taxes using our [Tax Rates API](https://developers.quaderno.io/api/#calculate-a-tax-rate), parameters follow a slighty different naming scheme:
+
+Quaderno.js      | Tax Rates API
+-----------------|--------------
+`taxClass`       | `tax_code`
+`businessNumber` | `tax_id`
+`taxType`       | `tax_behavior`
 
 ### calculatePrice([options])
 
@@ -99,7 +112,7 @@ This method returns a `Promise` which resolves with a `tax` object.
   priceObject.taxes;
 ```
 
-Calculates the final price of the product, tax inclusive.
+Helper method which calculates the final price of the product, tax inclusive.
 
 Available options are documented below:
 
@@ -107,7 +120,7 @@ Attribute          |  Mandatory | Description
 -------------------|------------|----------------------------------------------------------------------------------
 `amount`           | No         | Amount you are going to charge your customer..
 `quantity`         | No         | Quantity of the products.
-`taxType`          | No         | If the tax is included` or `excluded`
+`taxType`          | No         | If the tax is `included` or `excluded`
 
 The `options` can be omitted if you've set a form using `bindForm` and the proper `data-quaderno` or if you've retrieved the product information from Quaderno with `getProduct`
 
