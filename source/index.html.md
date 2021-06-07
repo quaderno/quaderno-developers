@@ -58,7 +58,7 @@ Please keep in mind that while you can test all the API methods and plugins agai
 <li>There's a global 200 documents cap. If you need to create more you'll have to remove some of your previous documents. You can remove all your documents by navigating to <strong>You > Purge</strong> your data at any time.
 </li>
 <li>Tax IDs (VAT numbers, ABN, etc.) are not validated in the Sandbox (**)</li>
-<li>Only state tax rates are returned by the Taxes API. Local tax rates will not be returned.</li>
+<li>Only state tax rates are returned by the Taxes API. Local tax rates will not be returned, with the exception of 90049, 10128, 60611, and 33132 for testing purposes.</li>
 <li>Tax thresholds are not updated in the Sandbox.</li>
 </ul>
 </aside>
