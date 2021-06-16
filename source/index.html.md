@@ -27,6 +27,7 @@ Quaderno is a SaaS app and set of APIs to automate and improve tax management in
 
 The documentation is organized into these major areas:
 
+- **[Quaderno Sandbox](#quaderno-sandbox)** is a safe space to experiment, test new features, and break things while learning about our Quaderno products.
 - **[Quaderno.js](#quaderno-js)** is a handy small javascript library to calculate sales taxes in your own checkout form, directly from your frontend.
 - **[Quaderno Checkout](#quaderno-checkout)** is a checkout form that you can use within your site to sell your own products and subscriptions.
 - **[Quaderno Apps](#apps)** allows you to create new partner integrations based on OAuth2 and thus removing the need of using private keys.
@@ -41,7 +42,7 @@ A custom Quaderno integration requires you to either have basic coding skills or
 
 Just [send us an email](mailto:support+dev@quaderno.io). Please include your code or the API request and response when possible. We’re always happy to help out with code or any other questions you might have.
 
-## The Sandbox
+# Quaderno Sandbox
 
 The Quaderno Sandbox mirrors the features found on the Quaderno Production servers and lets  you test our API and/or connect your trial or test mode accounts from other services like Stripe, PayPal, Braintree, etc.
 
