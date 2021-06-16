@@ -23,21 +23,23 @@ code_clipboard: true
 
 # Introduction
 
-Quaderno is a set of APIs to automate and improve tax management in businesses of all sizes. Here are some resources that will help you understand the basics of all of them.
+Quaderno is a SaaS app and set of APIs to automate and improve tax management in businesses of all sizes. Here are some resources that will help you understand the basics of all of them.
 
-The documentation is organized into three major areas:
+The documentation is organized into these major areas:
 
-- **Quaderno.js** is a javascript library that allows you to calculate sales taxes in your own checkout form.
-- **Quaderno Checkout** is a checkout form that you can use on your site to sell products and subscriptions.
-- **Quaderno API** is our billing and tax API that you can use to calculate taxes and manage receipts from your backend.
+- **[Quaderno.js](#quaderno-js)** is a handy small javascript library to calculate sales taxes in your own checkout form, directly from your frontend.
+- **[Quaderno Checkout](#quaderno-checkout)** is a checkout form that you can use within your site to sell your own products and subscriptions.
+- **[Quaderno Apps](#apps)** allows you to create new partner integrations based on OAuth2 and thus removing the need of using private keys.
+- **[Quaderno API ↗](https://developers.quaderno.io/api)** are a set of APIs that provides your business with billing, reporting and tax management capabilities. With our APIs you can [calculate taxes during checkout](https://developers.quaderno.io/api/#calculating-a-tax-rate), [validate tax IDs](https://developers.quaderno.io/api/#validate-a-tax-id) or [manage location evidences](https://developers.quaderno.io/api/#evidence). You can [issue and manage invoices](https://developers.quaderno.io/api/#create-an-invoice) and credit notes or log your expenses, as well as asynchronously get all your [tax and business reports](https://developers.quaderno.io/api/#reporting) programmatically.
+- **[Quaderno Connect API ↗](https://support.quaderno.io/quaderno-connect)** is our API to provide marketplaces with tax capabilities to their business models.
 
 **Not a developer?**
 
-A custom Quaderno integration requires you to either be or hire a developer. But you can use Quaderno through any number of [third-parties plugins and libraries](https://quaderno.io/integrations/) built by our community, such as for Shopify, Amazon FBA, and WooCommerce.
+A custom Quaderno integration requires you to either have basic coding skills or hire a developer. But we made Quaderno really easy to connect with many third-party platforms without coding experience at all. Check our documentation on [_one-click_ integrations](https://support.quaderno.io/platforms-and-integrations), such as for Shopify, Amazon FBA, and WooCommerce.
 
 **Need more help?**
 
-Just [send us an email](mailto:support@quaderno.io). We’re always happy to help out with code or any other questions you might have.
+Just [send us an email](mailto:support+dev@quaderno.io). Please include your code or the API request and response when possible. We’re always happy to help out with code or any other questions you might have.
 
 ## The Sandbox
 
