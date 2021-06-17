@@ -2,7 +2,13 @@
 
 With the Quaderno API, it’s easy to build a partner integration to add tax management and billing features to your product.
 
-For example, if you are a marketplace, you can integrate sales tax calculation using the Quaderno API so your users can calculate taxes automatically in their checkout forms depending on their customers' locations. But it’s not just marketplaces that work great with Quaderno - we’ve seen partner integrations built with all kinds of software from tools to manage sport clubs to WordPress blogs.
+For example, if you are a marketplace, you can integrate sales tax calculation using the Quaderno API so your users can calculate taxes automatically in their checkout forms depending on their customers' locations.
+
+<aside class="info">
+<strong>Are you a marketplace platform?</strong> <a href="https://support.quaderno.io/quaderno-connect" target="_blank">Quaderno Connect</a> provides tax management and invoicing capabilities to your business model! Go check this <a href="https://support.quaderno.io/integrating-connect-with-standard-accounts" target="_blank">step-by-step guide</a> for details on using Quaderno Apps with Quaderno Connect Standard accounts.
+</aside>
+
+But it’s not just marketplaces that work great with Quaderno - we’ve seen partner integrations built with all kinds of software from tools to manage sport clubs to WordPress blogs.
 
 Integrating with Quaderno has the power to add huge value for your users, streamlining their businesses processes and providing a great experience.
 
