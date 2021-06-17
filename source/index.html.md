@@ -44,29 +44,28 @@ Just [send us an email](mailto:support+dev@quaderno.io). Please include your cod
 
 # Quaderno Sandbox
 
-The Quaderno Sandbox mirrors the features found on the Quaderno Production servers and lets  you test our API and/or connect your trial or test mode accounts from other services like Stripe, PayPal, Braintree, etc.
+**Quaderno Sandbox is a safe space to experiment** with our set of APIs and products, testing new features or fine-tunning your Quaderno workflows and integrations, without the worries of breaking things while learning.
 
-The Sandbox has parity with the Quaderno main feature set supported by the live environment. This means you can test your Quaderno processes and know they will behave the same on the production servers as they do in the Sandbox environment.
+**Quaderno Sandbox has feature parity with the real live environment plus all the new features**, testable in advance but without the fuss of dealing with real user data! It's perfect for connecting your payment's processor testing accounts, knowing all will behave just as fine on the live production servers.
 
-**Your credentials for the Production environment does not work on the Sandbox.** You need to [create a new account](https://sandbox-quadernoapp.com/signup).
+**Quaderno Sandbox is a separate environment, with it's own URL `https://sandbox-quadernoapp.com` and credentials**. This means *your credentials for the Production environment won't work on Quaderno Sandbox.* You'll need to [create a new Quaderno Sandbox account](https://sandbox-quadernoapp.com/signup).
 
-By using your Sandbox account, you can test and debug your application without referencing any real Quaderno users or their live Quaderno accounts. The Sandbox lets you operate your application in a safe environment and provides you a way to fine tune your Quaderno routines before moving your product into production.
-
-We’re always happy to help out with code or any other questions you might have. Please [drop us a line](mailto:support@quaderno.io).
-
-<aside class="warning">
-Please keep in mind that while you can test all the API methods and plugins against the sandbox it has some limitations, most notably:
-<ul>
-<li>Emails are delivered to the account email rather than to the specified recipient.</li>
-<li>There's a global 200 documents cap. If you need to create more you'll have to remove some of your previous documents. You can remove all your documents by navigating to <strong>You > Purge</strong> your data at any time.
-</li>
-<li>Tax IDs (VAT numbers, ABN, etc.) are not validated in the Sandbox (**)</li>
-<li>Only state tax rates are returned by the Taxes API. Local tax rates will not be returned, with the exception of 90049, 10128, 60611, and 33132 for testing purposes.</li>
-<li>Tax thresholds are not updated in the Sandbox.</li>
-</ul>
+<aside class="info">
+<strong>⚠️ Quaderno Sandbox has some limitations to provide an improved testing experience:</strong>
 </aside>
+- Emails are delivered to the account email rather than to the specified recipient.
+- Tax IDs always return `{ "valid": true }` except for:
+  - **DE111111111**: acts as an invalid Tax ID, returning `{ "valid": false }`
+  - **IE222222222**: acts as if the Tax Validator service is down, returning `{ "valid": null }`
 
-** Generally, the sandbox will return all VAT numbers as valid. However, we recently added the following test numbers so you can test different scenarios in your Sandbox account:
+> Purge your Quaderno Sandbox documents with:
 
-- **DE111111111**: invalid number, returns `false`
-- **IE222222222**: node down, returns `null`
+```shell
+curl --user sk_your-secret-key:x \
+     --request POST \
+     --url http://your-url.sandbox-quadernoapp.com/api/purge
+```
+- The Taxes API only returns state tax rates. Local tax rates will not be returned, with the exception of `90049`, `10128`, `60611`, and `33132`.
+- Tax thresholds are not updated.
+
+- There's a global 200 documents cap. If you need to create more you'll have to remove your previous documents first, by navigating to <strong>You > Purge</strong> into the app, or using the `/purge` endpoint as shown on the right panel.
