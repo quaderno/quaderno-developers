@@ -54,6 +54,9 @@ When you include the Quaderno.js script in your page, a global `Quaderno` object
 
 ***Async request***. Use this method to initialize the global object `Quaderno`.
 
+<aside class="info">
+Use <code>init</code> for initializing Quaderno.js unbinded from the UI, as explained in <a href="#initializing-quaderno-js">initializing Quaderno.js</a> – Custom Init. This means you won't be using custom attributes like <code>id="quaderno-payment-form" data-publishable-key="pk_xxxxxxxx"</code> in your forms, but just pure javascript.
+</aside>
 
 This method returns a `Promise` which resolves if the publishableKey verification was successful. If there's any issue, this method returns a `Promise` which rejects with an `error` object. This object has either:
 
@@ -64,6 +67,7 @@ This method returns a `Promise` which resolves if the publishableKey verificatio
 ### bindForm( formId )
 
 ```js
+  // to use along with the deferred automatic init
   Quaderno.bindForm("#formId").then(function(){
     console.log('Success');
   }).catch(function(error){
@@ -73,6 +77,12 @@ This method returns a `Promise` which resolves if the publishableKey verificatio
 
 ***Async request***. This method also initializes the global object `Quaderno` from a form object.
 
+<aside class="info">
+Use this method when you need to use your own <code>id</code> in your forms or when you want to not load the form with the page but later, in conjuction with the <a href="#deferred-automatic-init">deferred automatic init</a>.
+
+If you want to completely detach from the UI and just use pure javascript, see the Custom Init in <a href="#initializing-quaderno-js">initializing Quaderno.js</a>.
+</aside>
+
 This method returns a `Promise` which resolves if the publishableKey verification was successful. If there's any issue, this method returns a `Promise` which rejects with an `error` object. This object has either:
 
 - **error.description**: A full description of the error.
@@ -81,6 +91,7 @@ This method returns a `Promise` which resolves if the publishableKey verificatio
 ### calculateTaxes( options )
 
 ```js
+  // use `options` along with Custom init
   var options = { taxClass: 'eservice', postalCode: '123456', city: 'Dublin', country: 'IE' }
 
   Quaderno.calculateTaxes(options).then(function(taxObject){
@@ -100,9 +111,20 @@ Attribute          |  Mandatory | Description
 `country`          | No         | ISO 3166-1 alpha-2
 `businessNumber`   | No         | A valid business number. Quaderno validates EU VAT numbers, ABN, and NZBN.
 
-The `options` can be omitted if you've set a form using `bindForm` and the proper `data-quaderno`.
+```html
+  <!-- no need to fill the `options` of calculateTaxes() with automatic inits -->
+  <form id="quaderno-payment-form" data-publishable-key="pk_xxxxxxxx">
+    <select data-quaderno="country"> … </select>
+    <input data-quaderno="postalCode" />
+    ...
+  </form>
+```
 
-This method returns a `Promise` which resolves with a `tax` object.
+<aside class="info">
+The <code>options</code> can be omitted if you've set a form using <code>bindForm</code> and the proper <code>data-quaderno</code>, or used the <a href="#simple-automatic-init">simple automatic init</a>.
+</aside>
+
+This method returns a `Promise` which resolves with a [tax object](#the-tax-object).
 
 Note that when you calculate taxes using our [Tax Rates API](https://developers.quaderno.io/api/#calculate-a-tax-rate), parameters follow a slighty different naming scheme:
 
@@ -115,7 +137,7 @@ Quaderno.js      | Tax Rates API
 ### calculatePrice([options])
 
 ```js
-  options = { amount: 100, quantiy: 2 }
+  options = { amount: 100, quantity: 2 }
   priceObject = Quaderno.calculatePrice(options);
 
   priceObject.subtotal;
@@ -132,22 +154,22 @@ Attribute          |  Mandatory | Description
 `quantity`         | No         | Quantity of the products.
 `taxType`          | No         | If the tax is `included` or `excluded`
 
-The `options` can be omitted if you've set a form using `bindForm` and the proper `data-quaderno` or if you've retrieved the product information from Quaderno with `getProduct`
+The `options` can be omitted if you've set a form using `bindForm` with its proper `data-quaderno` attributes, or if you've retrieved the product information from Quaderno with `getProduct`
 
 
 This method returns a `price` object with the following attributes:
 
-- subtotal: the price without taxes and discounts.
-- taxes: the taxes amount.
-- total: the final amount.
-- discountedAmount: The discount amount.
+- `subtotal`: the price without taxes and discounts.
+- `taxes`: the taxes amount.
+- `total`: the final amount.
+- `discountedAmount`: The discount amount.
 
 ### destroy()
 ```js
   Quaderno.destroy();
 ```
 
-Remove event listeners from the DOM elements. It might be useful if you have single-page apps and have tied the Quaderno object to a form via `bindForm` or the [simple initialization](#quaderno-js-how-to-initialize-quaderno-js-simple-automatic-init).
+Remove event listeners from the DOM elements. It might be useful if you have single-page apps and have tied the Quaderno object to a form via `bindForm` or the [simple initialization](#simple-automatic-init).
 
 ### getProduct( productId )
 ```js
@@ -156,7 +178,9 @@ Remove event listeners from the DOM elements. It might be useful if you have sin
   });
 ```
 
-***Async request***. Retrieve the product info identified by `productId`. Returns a `product` object in the resolve function.
+***Async request***. Retrieve the product info identified by `productId`. Returns a [`product` object](#the-product-object) in the resolve function.
+
+You can register your products manually in [quadernoapp.com/products](https://quadernoapp.com/products) or [programatically with our API](https://developers.quaderno.io/api/#products).
 
 ### getCoupon( couponCode )
 ```js
@@ -167,6 +191,8 @@ Remove event listeners from the DOM elements. It might be useful if you have sin
 
 ***Async request***. Retrieve the product info identified by `couponCode`. Returns a `coupon` object in the resolve function.
 
+You can register your products manually in [quadernoapp.com/checkout/coupons](https://quadernoapp.com/checkout/coupons) or [programatically with our API](https://developers.quaderno.io/api/#coupons).
+
 ### getLastTax()
 ```js
   taxes = Quaderno.getLastTax();
@@ -176,8 +202,11 @@ Remove event listeners from the DOM elements. It might be useful if you have sin
   taxes.country;
 ```
 
-Reads the last calculated tax and returns a `tax` object.
+Reads the last calculated tax and returns a [`tax` object](#the-tax-object).
 
+<aside class="notice">
+This performant method allows you to avoid repeatedly calling our API during your checkout process when you know the parameters won't change. Please use it whenever you can!
+</aside>
 
 ### validateBusinessNumber(businessNumber, country)
 ```js
@@ -191,7 +220,7 @@ Reads the last calculated tax and returns a `tax` object.
 
 ***Async request***. This method validates the customer's business number. Currently Quaderno validates EU VAT numbers, ABN, and NZBN.
 
-Please keep in mind that business numbers are not actually validated while using the Sandbox.
+Please keep in mind that business numbers are not actually validated when using [Quaderno Sandbox](#quaderno-sandbox).
 
 This method returns a `result` object with the following attribute:
 
@@ -250,7 +279,14 @@ Attribute          | Description
 
 ## Initializing Quaderno.js
 
-For your convenience, there are a few different ways to initialize Quaderno.js
+For your convenience, there are a few different ways to initialize Quaderno.js.
+
+<aside class="info">
+With the automatic inits (simple and deferred) Quaderno.js attaches itself to the DOM, looking for <code>data-quaderno</code> attributes in your <code>form</code>s to automatically fill the <code>options</code> for <a href="#calculatetaxes-options">calculateTaxes()</a>.
+</aside>
+
+You can avoid this behavior using the [custom init](#custom-init) method.
+
 ### Simple automatic init
 
 ```html
@@ -267,7 +303,7 @@ For your convenience, there are a few different ways to initialize Quaderno.js
     </body>
 ```
 
-Automatically loads quaderno.js if the form has the `quaderno-payment-form` ID and a valid `data-publishable-key`. Optionally you can also set a `data-product-id`.
+Automatically loads quaderno.js if the form has the `quaderno-payment-form` id and a valid `data-publishable-key`. Optionally you can also set a `data-product-id`.
 
 - ***data-publishable-key***: Your Quaderno _public_ key. Remember to never expose your _private_ API keys.
 
@@ -295,7 +331,7 @@ The input fields will be automatically detected as long as they have the `data-q
 
     <body>
       <form id="payment-form" data-publishable-key="pk_xxxxxxxx" data-product-id="prod_xxxxxxxx">
-        <select data-quaderno="country" /> … </select>
+        <select data-quaderno="country"> … </select>
         <input data-quaderno="postalCode" />
         <!-- … -->
       </form>
@@ -310,7 +346,7 @@ The input fields will be automatically detected as long as they have the `data-q
     </body>
 ```
 
-If you don't want the form to load automatically, you can load it later by not using the ***"quaderno-payment-form"*** id, and calling the `bindForm` method whenever you want.
+If you don't want the form to load automatically, you can load it later by not using the ***"quaderno-payment-form"*** id, and then call the `bindForm` method whenever you want.
 
 ### Custom init
 
@@ -327,23 +363,25 @@ If you don't want the form to load automatically, you can load it later by not u
 
     <script>
       Quaderno.init(publishableKey).then(function() {
-        console.log('Success');
+        console.log('Quaderno.js successfully initialized');
       }).catch(function(error) {
         console.log(error.description, error.messages);
       });
     </script>
 ```
 
-Futhermore, you can also dissociate Quaderno from the DOM by setting the Quaderno object properties by yourself. This means you need to explicitly set the minimum mandatory configuration options during the `init` call.
+Futhermore, you can also dissociate Quaderno from the DOM by setting the Quaderno object properties by yourself.
 
-- publishableKey: Your Quaderno publishable key.
-- productId: The ID of the product registered in Quaderno.
+This means you need to explicitly set your `publishableKey` as argument for the `init` call, instead of using the `data-publishable-key` html attribute in your `form`. 
+
+Afterwards, you'll need to specify all `options` for [`calculateTaxes()`](#calculatetaxes-options).
 
 ## Calculating taxes from your frontend with Quaderno.js
 
-> In this example, we are going to handle updates on the relevant tax-related fields to force taxes calculations and show it in a `<span>`:
+> In this example, we are going to handle UI updates on the relevant fields to force tax calculations and show it in a `<span>`. We'll be validating Tax IDs (business numbers) too when given one. We'll use the custom init method in this example.
 
 ```html
+<form>
   <label for="country">
     Country
     <select id="country">
@@ -355,7 +393,6 @@ Futhermore, you can also dissociate Quaderno from the DOM by setting the Quadern
       <option value="ES">Spain</option>
       <option value="CA">Canada</option>
       <option value="AU">Australia</option>
-      …
     </select>
   </label>
 
@@ -365,19 +402,45 @@ Futhermore, you can also dissociate Quaderno from the DOM by setting the Quadern
   </label>
 
   <label for="business-number">
+    Business number:
     <input id="business-number">
   </label>
 
+    <label for="tax-class">
+    Tax Code:
+    <select id="tax-class">
+      <option value="standard">standard</option>
+      <option value="eservice">eservice</option>
+      <option value="ebook">ebook</option>
+      <option value="saas">saas</option>
+    </select>
+  </label>
+
+</form>
   Taxes: <span id="tax-rate"></span>
 
   <script>
+
+    // never expose your private API key on your frontend, use the public API key instead
+    let publishableKey = "pk_test_xxxxxxxxxxxxxxxxxxxx";
+    // we're not attaching Quaderno.js to our form, so we need to use init:
+    Quaderno.init(publishableKey).then(function(){
+      console.log('Quaderno.js successfully initialized');
+    }).catch(function(error){
+      console.log(error.description, error.messages);
+    });
+
+    // this is a custom function to be called each time the user introduces new data
     function reloadTaxes(options){
+      console.log("Calling calculateTaxes with params", options)
       Quaderno.calculateTaxes(options).then(function(taxObject){
-        document.querySelector('tax-rate').innerHTML = taxObject.name + " " + taxObject.rate + "%"; // ie.: VAT 20%
+        // Remember, you need to be registered on the tax jurisdiction to get the tax rate
+        console.log("Taxes calculated:", taxObject)
+        document.querySelector('#tax-rate').innerHTML = taxObject.name + " " + taxObject.rate + "%"; // ie.: VAT 20%
       })
     }
 
-    // Handle the change events on the relevant user-inputs
+    // Handle change events on the relevant user-inputs so that the Tax Rate it's automatically updated
     document.querySelector('#country').addEventListener('change', function () {
       country = this.value
       postalCode = document.querySelector('#postal-code').value
@@ -399,13 +462,50 @@ Futhermore, you can also dissociate Quaderno from the DOM by setting the Quadern
       country = document.querySelector('#country').value
       postalCode = document.querySelector('#postal-code').value
 
+      // We're also validating Tax ID (business number) when given one
       Quaderno.validateBusinessNumber(businessNumber, country).then(function(){
         reloadTaxes({ businessNumber: businessNumber, country: country, postalCode: postalCode })
       })
     })
+
+    document.querySelector('#tax-class').addEventListener('change', function () {
+      taxClass = this.value
+      country = document.querySelector('#country').value
+      postalCode = document.querySelector('#postal-code').value
+      businessNumber = document.querySelector('#business-number').value
+
+      reloadTaxes({ taxClass: taxClass, country: country, postalCode: postalCode, businessNumber: businessNumber })
+    })
   </script>
 ```
 
-You can use Quaderno.js to calculate taxes by invoking the method `Quaderno.calculateTaxes`.
+The more common use of Quaderno.js is to calculate taxes by invoking the method `Quaderno.calculateTaxes`.
 
-If you are showing real time taxes calculations it's usually a good idea to force taxes calculations when the country, postal code or business number have changed.
+In the example on the right, we're showing a form with different countries and tax codes (called `taxClass` in Quaderno.js). Instead of using the super-simple approach of binding to your form by specifying a `quaderno-payment-form` id and a valid `data-publishable-key`, we're first initializing Quaderno.js with our public API key using the [custom init](#custom-init) method, and then collecting the data that will form our `options` for `calculateTaxes(options)` manually, with `document.querySelector('#value-id')`, anytime these receive a `change` event from the DOM.
+
+The result from `calculateTaxes(options)` is then painted on the UI. We're also validating the Tax ID (business number) with `validateBusinessNumber` when given one.
+
+> On this example, when selecting "United States" and introducing "7501" as postal code, the `console` prints:
+
+```
+Calling calculateTaxes with params:
+{
+    "country": "US",
+    "postalCode": "7501",
+    "businessNumber": ""
+}
+
+Taxes calculated:
+{
+  country: "US"
+  extraName: null
+  extraRate: null
+  name: "Sales tax"
+  rate: 6.25
+  region: "TX"
+}
+```
+
+Note that we're not calling the performant `getLastTax()` method because in this case the data changes everytime. If you already got your tax rate and need that data again later in your checkout process, you may want to call `calculateTaxes(options)` once and after that rely on `getLastTax()`.
+
+Remember that Quaderno.js will only return tax rates for those tax jurisdictions where you are registered. Follow the links to learn more on [tax jurisdictions](https://support.quaderno.io/tax-jurisdictions) and [setting up tax jurisdictions](https://support.quaderno.io/setting-up-tax-jurisdictions).
