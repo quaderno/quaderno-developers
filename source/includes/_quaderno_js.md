@@ -14,7 +14,17 @@ However you’re using Quaderno.js, you always begin by including the library an
 
 To get started, include this script on your pages — it should always be loaded directly from `https://js.quaderno.io`
 
-Please note that we provide a differentiated set of publishable API keys for Quaderno.js for security reasons. These API keys are different from your account's private API key. While private API keys are meant for being used server-side, secured in your backend, these public API keys are only used by Quaderno.js, and only allow access to our tax calculations engine. No data can be leaked from your account with public keys.
+<aside class="warning">
+<strong>*</strong> Please note that we provide a differentiated publishable API key for Quaderno.js for security reasons. This public API key is different from your account's private API key, which should never be exposed on your frontend.
+<br><br>
+You can tell the difference by their naming:
+<ul>
+<li>private key starts with <code>sk_</code>, which stands for "secret key"</li>
+<li>public key starts with <code>pk_</code>, which stands for "public key"</li>
+</ul>
+</aside>
+
+While the private API key is meant for being used server-side, secured in your backend, the public API key is only used by Quaderno.js, and only allow access to our tax calculations engine. No data can be leaked from your account with the public API key.
 
 ## Supported browsers
 
@@ -34,6 +44,7 @@ When you include the Quaderno.js script in your page, a global `Quaderno` object
 ### init( publishableKey )
 
 ```js
+  // never expose your private API key on your frontend, use the public API key instead
   Quaderno.init(publishableKey).then(function(){
     console.log('Success');
   }).catch(function(error){
@@ -258,7 +269,7 @@ For your convenience, there are a few different ways to initialize Quaderno.js
 
 Automatically loads quaderno.js if the form has the `quaderno-payment-form` ID and a valid `data-publishable-key`. Optionally you can also set a `data-product-id`.
 
-- ***data-publishable-key***: Your Quaderno public key
+- ***data-publishable-key***: Your Quaderno _public_ key. Remember to never expose your _private_ API keys.
 
 The input fields will be automatically detected as long as they have the `data-quaderno` with their definition:
 
