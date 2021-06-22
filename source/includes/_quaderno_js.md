@@ -27,7 +27,7 @@ Quaderno.js strives to support all recent versions of major browsers. For the sa
 
 If you have an issue with Quaderno.js on a specific browser, please **[contact us](mailto:support@quaderno.io)** so we can improve its support.
 
-## Quaderno.js API Reference
+## Quaderno.js methods
 
 When you include the Quaderno.js script in your page, a global `Quaderno` object will be available with the following methods:
 
@@ -186,6 +186,9 @@ This method returns a `result` object with the following attribute:
 
 - **result.valid**: true (valid business number), false (invalid business number) or null (the external validation service is temporarily unavailable).
 
+## Quaderno.js objects
+
+This section documents the objects you'll receive from Quaderno.js.
 ### The Tax object
 
 This object is passed by the resolve function of the `Promise` returned by the `Quaderno.calculateTaxes` method or by invoking `Quaderno.getLastTax`.
@@ -234,8 +237,9 @@ Attribute          | Description
 `redeemable`       | Indicates if the coupon is redeemable
 
 
-## How to initialize Quaderno.js
+## Initializing Quaderno.js
 
+For your convenience, there are a few different ways to initialize Quaderno.js
 ### Simple automatic init
 
 ```html
@@ -324,7 +328,7 @@ Futhermore, you can also dissociate Quaderno from the DOM by setting the Quadern
 - publishableKey: Your Quaderno publishable key.
 - productId: The ID of the product registered in Quaderno.
 
-## How to use Quaderno.js to calculate taxes
+## Calculating taxes from your frontend with Quaderno.js
 
 > In this example, we are going to handle updates on the relevant tax-related fields to force taxes calculations and show it in a `<span>`:
 
