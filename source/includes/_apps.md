@@ -50,8 +50,6 @@ Once you’ve created an app, you’ll see it in the [list of your apps](https:/
 
 First, you need to install an Oauth client library. For example, in Ruby you can use the oauth2 gem:
 
-<div class="center-column"></div>
-
 ```ruby
 echo "gem 'oauth2'" >> Gemfile
 bundle install
@@ -64,8 +62,6 @@ Option             | Required | Description
 redirect_uri       | Yes      | The URL to send your users to once they've agreed to connect their account to Quaderno (as well if they deny authorisation or something goes wrong, in which case we'll pass you details of the error). This must exactly match one of the callback URLs you specified above.
 scope              | No      | The level of access you want to your users' Quaderno accounts - this may either be `read_write` or `read_only`. Default is `read_only`. 
 state              | No       | Any value you pass in here will be included as a querystring parameter when we redirect back to your redirect URL. Please note that this value can be tampered with by your user, and so shouldn't be trusted implicitly. We recommend using this parameter for a CSRF token.
-
-<div class="center-column"></div>
 
 ```ruby
 require 'oauth2'
@@ -93,8 +89,6 @@ On the signup form, we recommend creating a second sandbox account using a diffe
 Once your user has either signed up or logged in, and then approved your app’s access to their account, they’ll be sent to your app’s redirect URI with a temporary code which you’ll see in the query parameters, as well as any state you provided.
 
 You should use the OAuth client library we set up earlier to fetch an access token using the code. This is a permanent access token which allows you to use the API on behalf of your merchant at any time.
-
-<div class="center-column"></div>
 
 ```ruby
 require 'oauth2'

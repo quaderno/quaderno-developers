@@ -16,7 +16,6 @@ In this example, you will learn how to create a Checkout Session for your custom
 
 First you need to dynamically create a Checkout Session for your customer (more details [here](https://developers.quaderno.io/api/#create-a-session))
 
-<div class="center-column"></div>
 ```shell
 curl -u sk_test123123123123123:x \
      -H 'Content-Type: application/json' \
@@ -27,7 +26,6 @@ curl -u sk_test123123123123123:x \
 
 This will return a new session like the following:
 
-<div class="center-column"></div>
 ```json
 {
       "id":1,
@@ -86,8 +84,6 @@ Quaderno provides a `checkout.succeeded` event to send you a notification every 
 
 You can subscribe to Quaderno webhooks by using our API (more details [here](https://developers.quaderno.io/api/#create-a-webhook)):
 
-<div class="center-column"></div>
-
 ```shell
 # body
 '{
@@ -110,7 +106,7 @@ Once you've subscribed to the `checkout.succeeded` event you need to create an e
 
 This is a what a `checkout.succeeded` notification should look like:
 
-<div class="center-column"></div>
+
 
 ```json
 {

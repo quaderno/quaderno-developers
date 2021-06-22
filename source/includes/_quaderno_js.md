@@ -6,7 +6,6 @@ To unleash all the power of our server-side APIs like Tax calculations and Tax I
 
 ## Including Quaderno.js
 
-<div class="center-column"></div>
 ```html
   <script src="https://js.quaderno.io/v4/"></script>
 ```
@@ -257,7 +256,6 @@ The input fields will be automatically detected as long as they have the `data-q
 - ***productId***
 - ***couponCode***
 
-<div class="center-column"></div>
 ```html
     <head>
       <script src="https://js.quaderno.io/v4/"></script>
@@ -275,8 +273,6 @@ The input fields will be automatically detected as long as they have the `data-q
 ### Deferred automatic init
 
 If you don't want the form to load automatically, you can load it later by not using the ***"quaderno-payment-form"*** id, and calling the `bindForm` method whenever you want.
-
-<div class="center-column"></div>
 
 ```html
     <head>
@@ -307,7 +303,6 @@ Futhermore, you can also dissociate Quaderno from the DOM by setting the Quadern
 - publishableKey: Your Quaderno publishable key.
 - productId: The ID of the product registered in Quaderno.
 
-<div class="center-column"></div>
 ```html
     <label for="country">
       <span>Country</span>
