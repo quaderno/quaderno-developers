@@ -162,7 +162,7 @@ Remove event listeners from the DOM elements. It might be useful if you have sin
 
   taxes.name;
   taxes.rate;
-  taxe.country;
+  taxes.country;
 ```
 
 Reads the last calculated tax and returns a `tax` object.
@@ -238,6 +238,20 @@ Attribute          | Description
 
 ### Simple automatic init
 
+```html
+    <head>
+      <script src="https://js.quaderno.io/v4/"></script>
+    </head>
+
+    <body>
+      <form id="quaderno-payment-form" data-publishable-key="pk_xxxxxxxx">
+        <select data-quaderno="country"> … </select>
+        <input data-quaderno="postalCode" />
+        ...
+      </form>
+    </body>
+```
+
 Automatically loads quaderno.js if the form has the `quaderno-payment-form` ID and a valid `data-publishable-key`. Optionally you can also set a `data-product-id`.
 
 - ***data-publishable-key***: Your Quaderno public key
@@ -256,23 +270,8 @@ The input fields will be automatically detected as long as they have the `data-q
 - ***productId***
 - ***couponCode***
 
-```html
-    <head>
-      <script src="https://js.quaderno.io/v4/"></script>
-    </head>
-
-    <body>
-      <form id="quaderno-payment-form" data-publishable-key="pk_xxxxxxxx">
-        <select data-quaderno="country"> … </select>
-        <input data-quaderno="postalCode" />
-        ...
-      </form>
-    </body>
-```
 
 ### Deferred automatic init
-
-If you don't want the form to load automatically, you can load it later by not using the ***"quaderno-payment-form"*** id, and calling the `bindForm` method whenever you want.
 
 ```html
     <head>
@@ -296,12 +295,9 @@ If you don't want the form to load automatically, you can load it later by not u
     </body>
 ```
 
+If you don't want the form to load automatically, you can load it later by not using the ***"quaderno-payment-form"*** id, and calling the `bindForm` method whenever you want.
+
 ### Custom init
-
-Futhermore, you can also dissociate Quaderno from the DOM by setting the Quaderno object properties by yourself. This means you need to explicitly set the minimum mandatory configuration options during the `init` call.
-
-- publishableKey: Your Quaderno publishable key.
-- productId: The ID of the product registered in Quaderno.
 
 ```html
     <label for="country">
@@ -323,6 +319,10 @@ Futhermore, you can also dissociate Quaderno from the DOM by setting the Quadern
     </script>
 ```
 
+Futhermore, you can also dissociate Quaderno from the DOM by setting the Quaderno object properties by yourself. This means you need to explicitly set the minimum mandatory configuration options during the `init` call.
+
+- publishableKey: Your Quaderno publishable key.
+- productId: The ID of the product registered in Quaderno.
 
 ## How to use Quaderno.js to calculate taxes
 
